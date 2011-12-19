@@ -2,7 +2,7 @@
 <zk>
 	<div align="center">
 		<separator height="15px" />
-		<window id="otrosegresos" closable="true" title="Registrar otros egresos" border="normal" 
+		<window id="otrosegresos" closable="true" title="Registrar otros Egresos" border="normal" 
 			width="690px">
 			<zscript><![CDATA[
 	//@IMPORT
@@ -38,7 +38,7 @@
 		ch2.setChecked(true);
 	}
 ]]></zscript>
-			<div>
+			<div align="left">
 				<panel collapsible="true" title="Datos Básicos"
 					open="true">
 					<panelchildren>
@@ -46,7 +46,7 @@
 						<grid>
 							<rows>
 
-								<row>
+								<row style="border:none">
 									<grid>
 										<columns>
 											<column label=""
@@ -63,30 +63,37 @@
 											</column>
 										</columns>
 										<rows>
-											<row>
+											<row style="border:none">
 												<label
 													value="Nro. Transacción">
 												</label>
 												<textbox
 													width="180px">
+													
 												</textbox>
+												<label value="(*)" style="color:red">	
+													</label>
 												<label value="Fecha">
 												</label>
 												<datebox
 													width="180px">
 												</datebox>
+												<label value="(*)" style="color:red">	
+													</label>
 											</row>
-											<row>
+											<row style="border:none">
 												<label
 													value="Monto">
 												</label>
 												<doublebox width="180px"></doublebox>
+												<label value="(*)" style="color:red">	
+													</label>
 												<label
 													value="Concepto">
 												</label>
 												<textbox rows="5" cols="40"></textbox>
 											</row>
-											<row>
+											<row style="border:none">
 
 											</row>
 										</rows>
@@ -123,7 +130,7 @@
 
 											</columns>
 											<rows>
-												<row>
+												<row style="border:none">
 													<label
 														value="Forma de Pago">
 													</label>
@@ -143,9 +150,7 @@
 														<comboitem
 															value="5" label="Cheque">
 														</comboitem>
-														<comboitem
-															value="6" label="CestaTicket">
-														</comboitem>
+														
 													</combobox>
 													<label
 														value="Monto Cancelado">
@@ -156,20 +161,20 @@
 
 
 												</row>
-												<row id="row1"
+												<row style="border:none" id="row1"
 													visible="false">
 													<label
 														value="Nro. de Documento">
 													</label>
 													<textbox
-														width="180px">
+														width="160px">
 													</textbox>
 
 													<label
-														value="Entidad Bancaria">
+														value="Banco">
 													</label>
 													<combobox value="--Seleccione--"
-														width="140px">
+														width="160px">
 														<comboitem
 															label="Banesco">
 														</comboitem>
@@ -188,10 +193,10 @@
 													</combobox>
 
 												</row>
-												<row id="row2"
+												<row style="border:none" id="row2"
 													visible="false">
 													<label
-														value="Tipo de Tarjeta">
+														value="Tipo Tarjeta">
 													</label>
 													<combobox value="--Seleccione--"
 														width="140px">
@@ -209,29 +214,11 @@
 											</rows>
 										</grid>
 									</row>
-									<!-- <row>
-										<div align="right">
-											<hbox>
-												<button
-													image="/Recursos/Imagenes/agregar.ico" onClick=""
-													label="" tooltiptext="Agregar a la Lista" />
-												<button
-													image="/Recursos/Imagenes/quitar.ico" onClick=""
-													label="" tooltiptext="Quitar de la Lista" />
-											</hbox>
-										</div>
-									</row>  -->
+									
 								</rows>
 
 								</grid>
-								<vbox height="50px">							
-								<button
-								image="/Recursos/Imagenes/agregar.ico" />
-								<separator height="5px" />
-								<button image="/Recursos/Imagenes/editar.ico" />
-								<separator height="5px" />
-								<button image="/Recursos/Imagenes/quitar.ico" />
-								</vbox>
+								
 						</hbox>
 
 
@@ -245,90 +232,139 @@
 								<grid>
 
 									<rows>
+										<row><hbox>
 
-										<row>
-											<grid width="650px">
-												<columns>
-													<column label=""
-														width="20px">
-														<checkbox
-															onCheck="setOn1()">
-														</checkbox>
-													</column>
-													<column label="Item"
-														width="60px">
-													</column>
-													<column
-														label="Forma de Pago" width="100px">
-													</column>
-													<column
-														label="Tipo de Tarjeta">
-													</column>
-													<column
-														label="Monto Cancelado" width="120px">
-													</column>
-													<column
-														label="Entidad Bancaria" width="100px">
-													</column>
-													<column
-														label="Nro. de Documento" width="140px">
-													</column>
+						<grid mold="paging" pageSize="10"
+							width="575px">
+							<auxhead>
+								<auxheader align="center"
+									label="Forma de Pago" />
+								<auxheader align="center"
+									label="Tipo Tarjeta" />
+								<auxheader align="center" label="Monto Cancelado" />
+								<auxheader align="center" label="Banco" />
+								<auxheader align="center"
+									label="Nro Documento" />
+							</auxhead>
+							
+							<columns>
+								<column width="100px" align="center">
+									
+								</column>
+								<column width="130px" align="center">
+									
+								</column>
+								<column width="110px" align="center">
+									
+								</column>
+								<column width="80px" align="center">
+									
+								</column>
+								<column width="130px" align="center">
+									
+								</column>
+							</columns>
+							<rows>
+								<row style="border:none" height="25px">
+									<label value="Efectivo" />
+									<label value="N/A" />
+									<label value="1000 Bs" />
+									<label value="N/A"/>
+									<label value="N/A" />
+								</row>
+								<row style="border:none" height="25px">
+									<label value="Cheque" />
+									<label value="N/A"/>
+									<label value="520 Bs"/>
+									<label value="Mercantil" />
+									<label value="0256254848484" />
+								</row>
+								<row style="border:none" height="25px">
+									<label value="" />
+									<label />
+									<label />
+									<label />
+									<label />
+								</row>
+								<row style="border:none" height="25px">
+									<label value="" />
+									<label />
+									<label />
+									<label />
+									<label />
+								</row>
+								<row style="border:none" height="25px">
+									<label />
+									<label />
+									<label />
+									<label />
+									<label />
+								</row>
+								<row style="border:none" height="25px">
+									<label value="" />
+									<label />
+									<label />
+									<label />
+									<label />
+								</row>
+								<row style="border:none" height="25px">
+									<label />
+									<label />
+									<label />
+									<label />
+									<label />
+								</row>
+								<row style="border:none" height="25px">
+									<label value="" />
+									<label />
+									<label />
+									<label />
+									<label />
+								</row>
+								<row height="25px" style="border:none">
+									<label />
+									<label />
+									<label />
+									<label />
+									<label />
+								</row>
+								<row height="25px" style="border:none">
+									<label value="" />
+									<label />
+									<label />
+									<label />
+									<label />
+								</row>
+								<row height="25px" style="border:none">
 
+									<label />
+									<label />
+									<label />
+									<label />
+									<label />
+								</row>
+								<row height="25px" style="border:none">
+									<label />
+									<label />
+									<label />
+									<label />
+									<label />
+								</row>
+							</rows>
+						</grid>
 
-												</columns>
-												<rows>
-													<row>
-														<checkbox
-															id="ch1">
-														</checkbox>
-														<label
-															value="1">
-														</label>
-														<label
-															value="Efectivo">
-														</label>
-														<label
-															value="N/A">
-														</label>
-														<label
-															value="2,5Bs">
-														</label>
-														<label
-															value="N/A">
-														</label>
-														<label
-															value="N/A">
-														</label>
-
-													</row>
-													<row>
-														<checkbox
-															id="ch2">
-														</checkbox>
-														<label
-															value="2">
-														</label>
-														<label
-															value="Cheque">
-														</label>
-														<label
-															value="N/A">
-														</label>
-														<label
-															value="20Bs">
-														</label>
-														<label
-															value="Mercantil">
-														</label>
-														<label
-															value="001299300019920">
-														</label>
-
-													</row>
-												</rows>
-											</grid>
-
-										</row>
+						<vbox height="50px">							
+							<button
+								image="/Recursos/Imagenes/agregar.ico" />
+							<separator height="5px" />
+							<button
+								image="/Recursos/Imagenes/editar.ico" />
+							<separator height="5px" />
+							<button
+								image="/Recursos/Imagenes/quitar.ico" />
+						</vbox>
+					</hbox> </row>
+										
 									</rows>
 								</grid>
 								<separator></separator>
@@ -336,7 +372,7 @@
 									<grid width="300px">
 										<rows>
 											
-											<row>
+											<row style="border:none">
 
 												<label
 													value="Monto Total">
@@ -345,7 +381,7 @@
 
 											</row>
 
-											<row>
+											<row style="border:none">
 												<label
 													value="Monto Restante a Pagar">
 												</label>
@@ -362,13 +398,19 @@
 					</panelchildren>
 				</panel>
 			</div>
+			<div align="left">
+			<label value=" (*) Campo Obligatorio" style="color:red" />
+			</div>
+			
 			<div align="right">
 				<button image="/Recursos/Imagenes/guardar.ico"
 					onClick="" label="Guardar" />
+				<button image="/Recursos/Imagenes/imprimir.ico" onClick=""
+				tooltiptext="Cancelar" label="Imprimir" />	
 				<button image="/Recursos/Imagenes/cancelar.ico"
 					onClick="" label="Cancelar" />
 				<button image="/Recursos/Imagenes/atras.ico"
-					onClick="" label="Salir" />
+					onClick="otrosegresos.onClose()" label="Salir" />
 			</div>
 		</window>
 	</div>

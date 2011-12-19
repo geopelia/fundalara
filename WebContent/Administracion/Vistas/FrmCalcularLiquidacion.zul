@@ -1,87 +1,201 @@
 <?page title="Cálculo de Liquidaciones" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window title="Calcular Liquidación" border="normal" width="650px">
+<div align="center">
+	<separator height="15px" />
+	<window closable="true" id="Compras" title="Calcular Liquidación" style=""
+			border="normal" width="690px">
+	
 <zscript><![CDATA[ ]]></zscript>
 <zscript><![CDATA[//@IMPORT 
 
                   import org.zkoss.Version;
 ]]></zscript>
+<zscript><![CDATA[
+	//@DECLARATION
+	public void doLogin() {
+		Window window = (Window) Executions.createComponents(
+				"ObservacionOrdenCompra.zul", null, null);
+		Observacion.doModal();
+		//loginDiv.setVisible(false);"ConsulViaticos.zul"
+		//click.setVisible(false);
+	}
+	public void mostrar() {
+		String var = CB1.getSelectedItem().getValue().toString();
+
+		if (var.equals("1")) {
+			row1.setVisible(false);
+			row2.setVisible(false);
+
+		} else if (var.equals("2")) {
+			row1.setVisible(true);
+			row2.setVisible(true);
+
+		} else if (var.equals("3")) {
+			row1.setVisible(true);
+			row2.setVisible(true);
+
+		} else {
+			row1.setVisible(true);
+			row2.setVisible(false);
+
+		}
+
+	}
+	void setOn1() {
+		c1.setChecked(true);
+		c2.setChecked(true);
+		c3.setChecked(true);
+		c4.setChecked(true);
+		c5.setChecked(true);
+	}
+]]></zscript>
+
 <zscript><![CDATA[//@DECLARATION 
         
 ]]></zscript>
+	<grid>
+			<rows>
+				<row>
+					<hbox height="30px" align="center">
+						<label value="Cédula" />
+						<space width="40px" />
+						<textbox id="txtCedula" width="130px"
+							height="20px" />
+						<button image="/Recursos/Imagenes/consultar.ico" onClick=""
+					tooltiptext="Aceptar" label="" />
+						<label value="(*)" style="color:red">	</label>	
+						<space width="20px" />
+						<label value="Nombre" />
+						<space />
+						<textbox id="txtNombre" width="240px"
+							height="20px" />
+						<button image="/Recursos/Imagenes/consultar.ico" onClick=""
+				tooltiptext="Aceptar" label="" />	
+						<label value="(*)" style="color:red">	</label>
+					</hbox>
+				
+				</row>
+				<row>
+					<hbox>
+						<listbox multiple="true" mold="paging"
+							pageSize="10" width="540px" height="100px" id="lbDatos">
+							<listhead>
+								<listheader style="border:none" label="Cedula" width="80px"
+									align="center" />
+								<listheader style="border:none" label="Nombre"
+									width="150px" align="center" />
+							</listhead>
 
+							<listitem>
+								<listcell label="18215628" />
+								<listcell label="Miguel Pérez" />
+							</listitem>
+							<listitem>
+								<listcell label="12589632" />
+								<listcell label="Roman Hilvana" />
+							</listitem>
+						</listbox>
+						<vbox height="50px">
+						
+							<button id="btnModificar"
+								image="/Recursos/Imagenes/editar.ico" />
+							
+						</vbox>
+						
+					
+					</hbox>
+				</row>
+			</rows>
+		</grid>
 
-		<groupbox>			
-				<groupbox width="600px">
-				<caption> Datos del Empleado</caption>
-				<grid>
-					<rows>
-
-						<row>
-							<grid>
-								<columns>
-									<column label="" width="130px" />
-									<column label="" width="180px" />
-									<column label="" width="130px" />
-									<column label="" width="180px" />
-								</columns>
-								<rows>
-									<row>
-										<label value="Cédula" />
-										<bandbox width="80%"></bandbox>
-										<label value="Nombre" />
-										<bandbox width="80%"></bandbox>
-									</row>
-								</rows>
-							</grid>
-						</row>
-					</rows>
-				</grid>
-			</groupbox>
+		
+			<div align="left">
+			<panel title="Datos Laborales" collapsible="true"
+			open="false">
+			<panelchildren>
 			
-			<groupbox width="600px">
-			<caption> Datos Laborales</caption>
 					<grid>
 					<rows>
 
 
 						<row>
 
-							
+							<groupbox mold="3d" closable="false"
+								style="padding: 10px;" width="390
+		">
+
+								<div>
 									<grid>
 										<columns>
 											<column label=""
-												width="130px">
+												width="25%">
 											</column>
 											<column label=""
-												width="180px">
+												width="25%">
 											</column>
 											<column label=""
-												width="130px">
+												width="25%">
 											</column>
 											<column label=""
-												width="180px">
+												width="25%">
 											</column>
 										</columns>
 										<rows>
-											<row>
+											<row style="border:none">
 												Fecha Ingreso
-												<textbox />
-												Tipo Empleado
-												<textbox />
+												<datebox width="80%"
+													format="dd/mm/yyyy" />
+												Cargo
+												<combobox width="80%" value="Seleccione--">
+													<comboitem
+														label="Técnico">
+													</comboitem>
+													<comboitem
+														label="Secretaria">
+													</comboitem>
+													<comboitem
+														label="Obrero(a)">
+													</comboitem>
+													<comboitem
+														label="Otro">
+													</comboitem>
+												</combobox>
 											</row>
 
 
-											<row>
+											<row style="border:none">
 												Sueldo Base
-												<textbox />
-												Periodo de Pago
-												<textbox />
+												<doublebox width="87%" />
+												Tipo de Nomina
+												<combobox width="80%" value="Seleccione--">
+													<comboitem
+														label="Diario">
+													</comboitem>
+													<comboitem
+														label="Semanal">
+													</comboitem>
+													<comboitem
+														label="Quincenal">
+													</comboitem>
+													<comboitem
+														label="Mensual">
+													</comboitem>
+												</combobox>
 											</row>
 
-											<row>
+											<row style="border:none">
 												Horario de trabajo
-												<textbox />
+												<combobox value="Seleccione--" width="80%">
+													<comboitem
+														label="Tiempo convencional">
+													</comboitem>
+													<comboitem
+														label="Medio Tiempo">
+													</comboitem>
+													<comboitem
+														label="Tiempo Completo">
+													</comboitem>
+												</combobox>
 											</row>
 										</rows>
 
@@ -89,17 +203,17 @@
 
 
 
-							
+								</div>
+							</groupbox>
 						</row>
 					</rows>
 				</grid>
-			</groupbox>
+			</panelchildren>
+			</panel>
 			<panel collapsible="true" title="Datos del Pago"
 					open="false">
-					<panelchildren>
-
-
-						<div>
+				<panelchildren>
+				<div>
 							<grid>
 
 								<rows>
@@ -123,21 +237,65 @@
 
 											</columns>
 											<rows>
-												
-												<row id="row1"
-													>
+												<row style="border:none">
+													
+													<label 
+														value="Total Liquidación">
+													</label>
+													<textbox 
+														width="180px" disabled="true">
+													</textbox>
+													
+												</row>
+												<row style="border:none">
+													
+													<label 
+														value="Forma de Pago">
+													</label>
+													<hbox align="center">
+													<combobox id="CB1" value="Seleccione--"
+														onSelect="mostrar()" width="160px">
+														<comboitem
+															value="1" label="Efectivo">
+														</comboitem>
+														<comboitem
+															value="2" label="Débito">
+														</comboitem>
+														<comboitem
+															value="3" label="Crédito">
+														</comboitem>
+														<comboitem
+															value="4" label="Transferencia">
+														</comboitem>
+														<comboitem
+														value="5" label="Cheque">
+														</comboitem>
+													</combobox>
+													<label width="10px" value="(*)" style="color:red">	</label>
+													</hbox>
 													<label
-														value="Nro. de Cheque">
+														value="Monto Cancelado">
 													</label>
 													<textbox
 														width="180px">
 													</textbox>
 
+
+												</row>
+												<row style="border:none" id="row1"
+													visible="false">
 													<label
-														value="Entidad Bancaria">
+														value="Nro. de Documento">
 													</label>
-													<combobox
-														width="180px">
+	
+											<textbox width="180px">
+													</textbox>
+
+													<label
+														value="Banco">
+													</label>
+													<combobox value="Seleccione--"
+														width="150px">
 														<comboitem
 															label="Banesco">
 														</comboitem>
@@ -154,17 +312,15 @@
 															label="Venezuela">
 														</comboitem>
 													</combobox>
-													
 
 												</row>
-												
-												<row id="row2"
+												<row style="border:none" id="row2"
 													visible="false">
 													<label
-														value="Tipo de Tarjeta">
+														value="Tipo Tarjeta">
 													</label>
-													<combobox
-														width="180px">
+													<combobox value="Seleccione--"
+														width="170px">
 														<comboitem
 															label="Visa">
 														</comboitem>
@@ -176,7 +332,7 @@
 														</comboitem>
 													</combobox>
 												</row>
-											</rows>
+								</rows>
 										</grid>
 									</row>
 									
@@ -185,21 +341,21 @@
 							</grid>
 
 						</div>
-
-
-						<separator></separator>
-					
-						<separator></separator>
-					</panelchildren>
-				</panel>
-					
+				
+				</panelchildren>
+				
+			</panel>			
 			
+			<label value=" (*) Campo Obligatorio" style="color:red" />
+			</div>
+		
 			
-		</groupbox>
-
+		
 		<div align="right">
 			<button image="/Recursos/Imagenes/aceptar.ico" onClick=""
-				tooltiptext="Aceptar" label="Registrar" />
+				tooltiptext="Aceptar" label="Guardar" />
+			<button image="/Recursos/Imagenes/imprimir.ico" onClick=""
+				tooltiptext="Cancelar" label="Imprimir" />	
 			<button image="/Recursos/Imagenes/cancelar.ico" onClick=""
 				tooltiptext="Cancelar" label="Cancelar" />
 			<button image="/Recursos/Imagenes/atras.ico" onClick=""
@@ -207,4 +363,5 @@
 
 		</div>
 	</window>
+</div>
 </zk>

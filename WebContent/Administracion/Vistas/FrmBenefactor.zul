@@ -1,6 +1,8 @@
 <?page title="Benefactores" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 <zk>
-	<window id="Bene" title="Benefactores" border="normal"
+	<window id="Bene" apply="controlador.administracion.BenefactorController" title="Benefactores" border="normal"
 		width="690px">
 <zscript>
 		<![CDATA[
@@ -8,7 +10,26 @@
 				Window window = (Window) Executions.createComponents(
 						"/Administracion/FrmCatalogoBenefactor.zul", null, null);
 				}
-		
+			
+			
+			   modelo.Benefactor benefactor = new modelo.Benefactor();
+			   void guardar(){
+				   modelo.Parroquia parroquia = new modelo.Parroquia();
+				   
+				     benefactor.setParroquia(parroquia);
+				     benefactor.setCodMunicipio("asd");
+				     benefactor.setEstatus('A');
+				     benefactor.setFax("2321312");
+				     benefactor.setTelefono1("2131");
+				     benefactor.
+				     //benefactor.setParroquia("221");
+				     
+				     servicioBenefactor.agregar(benefactor);
+				     benefactor = new modelo.Benefactor();
+				     binder.loadAll();
+				     
+			   }
+			
 		
 		]]>
 	</zscript>
@@ -25,7 +46,7 @@
 					<row align="left" style="border:none;">
 						<label value="R.I.F" />
 						<hbox align="center">
-							<textbox width="150px" />
+							<textbox width="150px" value="@{benefactor.rif}"/>
 							<label value="(*)" style="color:red" />
 							<button
 								image="/Recursos/Imagenes/consultar.ico"
@@ -36,7 +57,7 @@
 					<row spans="1,3" style="border:none;">
 						<label value="Razón Social" />
 						<hbox align="center">
-							<textbox width="350px" />
+							<textbox width="350px" value="@{benefactor.nombre}"/>
 							<label value="(*)" style="color:red" />
 						</hbox>
 					</row>
@@ -56,7 +77,7 @@
 					<row style="border:none;">
 						<label value="Teléfono" />
 						<hbox>
-							<combobox width="40px" readonly="true">
+							<combobox width="40px" readonly="true" id="cbtel">
 								<comboitem label="0251"></comboitem>
 								<comboitem label="0252"></comboitem>
 								<comboitem label="0253"></comboitem>
@@ -66,7 +87,7 @@
 						</hbox>
 						<label value="Numero de Fax" />
 						<hbox>
-							<combobox width="40px" readonly="true">
+							<combobox width="40px" readonly="true" id="cbfax">
 								<comboitem label="0251"></comboitem>
 								<comboitem label="0252"></comboitem>
 								<comboitem label="0253"></comboitem>
@@ -76,13 +97,13 @@
 					</row>
 					<row style="border:none;">
 						<label value="Correo Electrónico" />
-						<textbox width="210px" />
-						<label value="Twitter" />
-						<textbox width="185px" />
+						<textbox width="210px" value="@{benefactor.correoElectronico}"/>
+						<label value="Twitter"  />
+						<textbox width="185px" value="@{benefactor.cuentaTwitter}"/>
 					</row>
 					<row style="border:none;" spans="1,3">
 						<label value="Pagina Web" />
-						<textbox width="320px" />
+						<textbox width="320px" value="@{benefactor.paginaWeb}"/>
 					</row>
 				</rows>
 			</grid>
@@ -102,26 +123,16 @@
 						<label value="Estado" />
 						<hbox>
 							<combobox readonly="true"
-								value="--Seleccione--" width="160px">
-								<comboitem label="Lara" />
-								<comboitem label="Portuguesa" />
-								<comboitem label="Yaracuy" />
+								value="--Seleccione--" width="160px" id="cbEstado">
+								
 							</combobox>
 							<label value="(*)" style="color:red" />
 						</hbox>
 						<label value="Municipio" />
 						<hbox>
 							<combobox readonly="true"
-								value="--Seleccione--" width="160px">
-								<comboitem label="Andrés Eloy Blanco" />
-								<comboitem label="Crespo" />
-								<comboitem label="Iribarren" />
-								<comboitem label="Jiménez" />
-								<comboitem label="Morán" />
-								<comboitem label="Palavecino" />
-								<comboitem label="Simón Planas" />
-								<comboitem label="Torres" />
-								<comboitem label="Urdaneta" />
+								value="--Seleccione--" width="160px" id="cbMunicipio">
+								
 							</combobox>
 							<label value="(*)" style="color:red" />
 						</hbox>
@@ -129,15 +140,9 @@
 					<row spans="1,3" style="border:none;">
 						<label value="Parroquia" />
 						<hbox>
-							<combobox readonly="true"
-								value="--Seleccione--" width="160px">
-								<comboitem label="Barquisimeto" />
-								<comboitem label="Cabudare" />
-								<comboitem label="Carora" />
-								<comboitem label="Duaca" />
-								<comboitem label="El Cují" />
-								<comboitem label="El Tocuyo" />
-								<comboitem label="Quibor" />
+							<combobox readonly="true" id="cbParroquia"
+								value="--Seleccione--" width="160px" model="@{cntrl.lista}">
+								
 							</combobox>
 							<label value="(*)" style="color:red" />
 						</hbox>
@@ -146,7 +151,7 @@
 						<label value="Dirección Habitación" />
 						<hbox align="center">
 							<textbox maxlength="200" height="40px"
-								width="505px" multiline="true" />
+								width="505px" multiline="true" value="@{benefactor.direccion}" />
 							<label value="(*)" style="color:red" />
 						</hbox>
 					</row>
@@ -156,14 +161,14 @@
 
 		<label value=" (*) Campo Obligatorio" style="color:red" />
 		<div align="right">
-			<button image="/Recursos/Imagenes/guardar.ico" onClick=""
+			<button image="/Recursos/Imagenes/guardar.ico" id="guardar" onClick="guardar()"
 				tooltiptext="Guardar Nuevo Benefactor" label="Guardar" width="100px" />
 			<button image="/Recursos/Imagenes/editar.ico" onClick=""
 				tooltiptext="Modificar Datos del Benefactor" label="Modificar"
 				width="100px" />
-			<button image="/Recursos/Imagenes/quitar.ico" onClick=""
+			<button image="/Recursos/Imagenes/quitar.ico"
 				tooltiptext="Eliminar Benefactor" label="Eliminar" width="100px" />
-			<button image="/Recursos/Imagenes/salir.png" onClick=""
+			<button image="/Recursos/Imagenes/salir.png"
 				tooltiptext="Salir de la Ventana" label="Salir" width="100px" >
 				<attribute name="onClick">
 				Bene.onClose();

@@ -2,39 +2,107 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-
-
-	
-
-
-
-	<bean id="daoDivisa" class="dao.competencia.DaoDivisa">
+	<bean id="genericDao" class="dao.general.GenericDAO">
 	</bean>
-
-	<bean id="servicioDivisa" class="servicio.competencia.ServicioDivisa">
-		<property name="daoDivisa" ref="daoDivisa"></property>
+	<bean id="servicioTipoActividadSocial" class="servicio.atleta.ServicioTipoActividadSocial">
+		<property name="daoP" ref="genericDao"></property>
 	</bean>
-
-<bean id="daoCompetencia" class="dao.competencia.DaoCompetencia">
+	<bean id="daoCliente" class="dao.administracion.DaoCliente">
 	</bean>
-
-	<bean id="servicioCompetencia" class="servicio.competencia.ServicioCompetencia">
-		<property name="daoCompetencia" ref="daoCompetencia"></property>
+	<bean id="servicioCliente" class="servicio.administracion.ServicioCliente">
+		<property name="daoCliente" ref="daoCliente"></property>
 	</bean>
 	
-	<bean id="daoIndicador" class="dao.competencia.DaoIndicador">
+	<bean id="daoDatoAcademicoEmpleado" class="dao.administracion.DaoDatoAcademicoEmpleado">
 	</bean>
-
-	<bean id="servicioIndicador" class="servicio.competencia.ServicioIndicador">
-		<property name="daoIndicador" ref="daoIndicador"></property>
+	<bean id="servicioDatoAcademicoEmpleado" class="servicio.administracion.ServicioDatoAcademicoEmpleado">
+		<property name="daoDatoAcademicoEmpleado" ref="daoDatoAcademicoEmpleado"></property>
 	</bean>
 	
-			
-	<bean id="daoCategoriaCompetencia" class="dao.competencia.DaoCategoriaCompetencia">
+	<bean id="daoEmpleado" class="dao.administracion.DaoEmpleado">
 	</bean>
-
-	<bean id="servicioCategoriaCompetencia" class="servicio.competencia.ServicioCategoriaCompetencia">
-		<property name="daoCategoriaCompetencia" ref="daoCategoriaCompetencia"></property>
+	<bean id="servicioEmpleado" class="servicio.administracion.ServicioEmpleado">
+		<property name="daoEmpleado" ref="daoEmpleado"></property>
 	</bean>
-
+	<bean id="daoEmpleadoAlergia" class="dao.administracion.DaoEmpleadoAlergia">
+	</bean>
+	<bean id="servicioEmpleadoAlergia" class="servicio.administracion.ServicioEmpleadoAlergia">
+		<property name="daoEmpleadoAlergia" ref="daoEmpleadoAlergia"></property>
+	</bean>
+	<bean id="daoEmpleadoConceptoNomina" class="dao.administracion.DaoEmpleadoConceptoNomina">
+	</bean>
+	<bean id="servicioEmpleadoConceptoNomina" class="servicio.administracion.ServicioEmpleadoConceptoNomina">
+		<property name="daoEmpleadoConceptoNomina" ref="daoEmpleadoConceptoNomina"></property>
+	</bean>
+	<bean id="daoEmpleadoSueldo" class="dao.administracion.DaoEmpleadoSueldo">
+	</bean>
+	<bean id="servicioEmpleadoSueldo" class="servicio.administracion.ServicioEmpleadoSueldo">
+		<property name="daoEmpleadoSueldo" ref="daoEmpleadoSueldo"></property>
+	</bean>
+	<bean id="daoEmpleadoTipoNomina" class="dao.administracion.DaoEmpleadoTipoNomina">
+	</bean>
+	<bean id="servicioEmpleadoTipoNomina" class="servicio.administracion.ServicioEmpleadoTipoNomina">
+		<property name="daoEmpleadoTipoNomina" ref="daoEmpleadoTipoNomina"></property>
+	</bean>
+	<bean id="daoMunicipio" class="dao.administracion.DaoMunicipio">
+	</bean>
+	<bean id="servicioMunicipio" class="servicio.administracion.ServicioMunicipio">
+		<property name="daoMunicipio" ref="daoMunicipio"></property>
+	</bean>
+	<bean id="daoPeriodicidadPago" class="dao.administracion.DaoPeriodicidadPago">
+	</bean>
+	<bean id="servicioPeriodicidadPago" class="servicio.administracion.ServicioPeriodicidadPago">
+		<property name="daoPeriodicidadPago" ref="daoPeriodicidadPago"></property>
+	</bean>
+	<bean id="daoProveedor" class="dao.administracion.DaoProveedor">
+	</bean>
+	<bean id="servicioProveedor" class="servicio.administracion.ServicioProveedor">
+		<property name="daoProveedor" ref="daoProveedor"></property>
+	</bean>
+	<bean id="daoProveedorBanco" class="dao.administracion.DaoProveedorBanco">
+	</bean>
+	<bean id="servicioProveedorBanco" class="servicio.administracion.ServicioProveedorBanco">
+		<property name="daoProveedorBanco" ref="daoProveedorBanco"></property>
+	</bean>
+	<bean id="daoTipoConceptoNomina" class="dao.administracion.DaoTipoConceptoNomina">
+	</bean>
+	<bean id="servicioTipoConceptoNomina" class="servicio.administracion.ServicioTipoConceptoNomina">
+		<property name="daoTipoConceptoNomina" ref="daoTipoConceptoNomina"></property>
+	</bean>
+	<bean id="daoParroquia" class="dao.administracion.DaoParroquia">
+	</bean>
+	<bean id="servicioParroquia" class="servicio.administracion.ServicioParroquia">
+		<property name="daoParroquia" ref="daoParroquia"></property>
+	</bean>
+	<bean id="daoCargo" class="dao.administracion.DaoCargo">
+	</bean>
+	<bean id="servicioCargo" class="servicio.administracion.ServicioCargo">
+		<property name="daoCargo" ref="daoCargo"></property>
+	</bean>
+	<bean id="daoBanco" class="dao.administracion.DaoBanco">
+	</bean>
+	<bean id="servicioBanco" class="servicio.administracion.ServicioBanco">
+		<property name="daoBanco" ref="daoBanco"></property>
+	</bean>
+	<bean id="daoTipoCuentaBanco" class="dao.administracion.DaoTipoCuentaBanco">
+	</bean>
+	<bean id="servicioTipoCuentaBanco" class="servicio.administracion.ServicioTipoCuentaBanco">
+		<property name="daoTipoCuentaBanco" ref="daoTipoCuentaBanco"></property>
+	</bean>
+	<bean id="daoEmpleadoCargo" class="dao.administracion.DaoEmpleadoCargo">
+	</bean>
+	<bean id="servicioEmpleadoCargo" class="servicio.administracion.ServicioEmpleadoCargo">
+		<property name="daoEmpleadoCargo" ref="daoEmpleadoCargo"></property>
+	</bean>
+	<bean id="daoTipoNomina" class="dao.administracion.DaoTipoNomina">
+	</bean>
+	<bean id="servicioTipoNomina" class="servicio.administracion.ServicioTipoNomina">
+		<property name="daoTipoNomina" ref="daoTipoNomina"></property>
+	</bean>
+	<bean id="daoBenefactor" class="dao.administracion.DaoBenefactor">
+	</bean>
+	<bean id="servicioBenefactor" class="servicio.administracion.ServicioBenefactor">
+		<property name="daoBenefactor" ref="daoBenefactor"></property>
+	</bean>
+	
 </beans>

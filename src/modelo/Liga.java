@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 16/12/2011 03:51:27 PM by Hibernate Tools 3.4.0.CR1
+// Generated 18/12/2011 11:15:50 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,28 +21,24 @@ import javax.persistence.Table;
 public class Liga implements java.io.Serializable {
 
 	private String codigoLiga;
-	private DatoBasico datoBasico;
 	private String nombre;
-	private char estatus;
+	private byte[] logo;
 	private Set<Categoria> categorias = new HashSet<Categoria>(0);
 
 	public Liga() {
 	}
 
-	public Liga(String codigoLiga, DatoBasico datoBasico, String nombre,
-			char estatus) {
+	public Liga(String codigoLiga, String nombre, byte[] logo) {
 		this.codigoLiga = codigoLiga;
-		this.datoBasico = datoBasico;
 		this.nombre = nombre;
-		this.estatus = estatus;
+		this.logo = logo;
 	}
 
-	public Liga(String codigoLiga, DatoBasico datoBasico, String nombre,
-			char estatus, Set<Categoria> categorias) {
+	public Liga(String codigoLiga, String nombre, byte[] logo,
+			Set<Categoria> categorias) {
 		this.codigoLiga = codigoLiga;
-		this.datoBasico = datoBasico;
 		this.nombre = nombre;
-		this.estatus = estatus;
+		this.logo = logo;
 		this.categorias = categorias;
 	}
 
@@ -57,16 +52,6 @@ public class Liga implements java.io.Serializable {
 		this.codigoLiga = codigoLiga;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "codigo_parroquia", nullable = false)
-	public DatoBasico getDatoBasico() {
-		return this.datoBasico;
-	}
-
-	public void setDatoBasico(DatoBasico datoBasico) {
-		this.datoBasico = datoBasico;
-	}
-
 	@Column(name = "nombre", nullable = false)
 	public String getNombre() {
 		return this.nombre;
@@ -76,13 +61,13 @@ public class Liga implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	@Column(name = "estatus", nullable = false, length = 1)
-	public char getEstatus() {
-		return this.estatus;
+	@Column(name = "logo", nullable = false)
+	public byte[] getLogo() {
+		return this.logo;
 	}
 
-	public void setEstatus(char estatus) {
-		this.estatus = estatus;
+	public void setLogo(byte[] logo) {
+		this.logo = logo;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
