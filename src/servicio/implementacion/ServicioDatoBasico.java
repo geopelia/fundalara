@@ -65,4 +65,9 @@ public class ServicioDatoBasico implements IServicioDatoBasico {
 		return daoDatoBasico.listarPorPadre(s,i);
 		}
 
+	@Override
+	public List<DatoBasico> listarParroquias() {
+		return daoDatoBasico.listarParroquias();		
+	}
+
 }

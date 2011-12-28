@@ -54,4 +54,17 @@ public class DaoDatoBasico extends GenericDao {
 		c.add(Restrictions.eq("codigoDatoBasico", i));
 		return (DatoBasico) c.list().get(0);
 	}
+	
+
+	public List<DatoBasico> listarParroquias(){
+		  
+		  Session session = getSession();
+		  Transaction tx = session.beginTransaction();
+		  Criteria c = session.createCriteria(TipoDato.class);
+		  TipoDato td =  (TipoDato) c.add(Restrictions.eq("nombre", "parroquia")).list().get(0);
+          c = session.createCriteria(DatoBasico.class);
+          List list = c.add(Restrictions.eq("tipoDato",td)).list();
+          return list;
+		  
+	  }
 }

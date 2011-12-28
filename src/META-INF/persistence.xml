@@ -114,6 +114,5 @@
 		<class>modelo.TipoNomina</class>
 		<class>modelo.UnidadMedida</class>
 		<class>modelo.ValorEscalaMedicion</class>
-		
 	</persistence-unit>
 </persistence>

@@ -22,12 +22,19 @@ public class ServicioDivisa implements IServicioDivisa {
 
 	@Override
 	public void eliminar(Divisa d) {
+		d.setEstatus('E');
 		daoDivisa.eliminar(d);
 		
 	}
 
 	@Override
-	public void agregar(Divisa d) {
+	public void agregar(Divisa d) {	
+		if (d.getCodigoDivisa() == 0){
+		   int cod = daoDivisa.listar(Divisa.class).size()+1;
+		   d.setCodigoDivisa(cod);
+		   d.setEstatus('A');
+		}
+		System.out.println(d.getDireccion());
 		daoDivisa.guardar(d);
 		
 	}
@@ -45,13 +52,19 @@ public class ServicioDivisa implements IServicioDivisa {
 
 	@Override
 	public List<Divisa> listarActivos() {
-		return daoDivisa.listarActivos(Divisa.class);
+		return daoDivisa.listarActivos();
 	}
 
 	@Override
 	public Divisa buscarPorCodigo(Divisa d) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Divisa> filtrar (String cad) {
+		System.out.println(cad);
+		return daoDivisa.filtar(cad);
 	}
 	
 	

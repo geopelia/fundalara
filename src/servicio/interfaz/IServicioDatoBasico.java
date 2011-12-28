@@ -15,6 +15,10 @@ public interface IServicioDatoBasico {
 	
 	public abstract List<DatoBasico> buscarPorTipoDato(TipoDato td);
 	
+
 	public abstract DatoBasico buscarPorCodigo(Integer i);
+
+	
+	public abstract List<DatoBasico> listarParroquias();
 
 }
