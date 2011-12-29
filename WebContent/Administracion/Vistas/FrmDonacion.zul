@@ -1,6 +1,7 @@
 <?page title="Donaciones" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window id="donaciones" title="Donaciones" border="normal" width="690px">
+	<window id="donaciones" title="Donaciones" closable="true" border="normal"
+		width="690px">
 		<zscript><![CDATA[
 	//@IMPORT
 	import org.zkoss.Version;
@@ -27,9 +28,9 @@
 			row2.setVisible(false);
 
 		}
-}
+	}
 ]]></zscript>
-	<grid>
+		<grid>
 			<rows>
 				<row>
 					<hbox height="30px" align="center">
@@ -37,29 +38,29 @@
 						<space width="10px" />
 						<textbox id="txtCedula" width="130px"
 							height="20px" />
-						<button image="/Recursos/Imagenes/consultar.ico" onClick=""
-					tooltiptext="Aceptar" label="" />
-						<label value="(*)" style="color:red">	</label>	
+						<button image="/Recursos/Imagenes/consultar.ico"
+							onClick="" tooltiptext="Consultar" label="" />
+						<label value="(*)" style="color:red"></label>
 						<space width="10px" />
 						<label value="Nombre o Razón Social" />
 						<space />
 						<textbox id="txtNombre" width="140px"
 							height="20px" />
-						<button image="/Recursos/Imagenes/consultar.ico" onClick=""
-				tooltiptext="Aceptar" label="" />	
-						<label value="(*)" style="color:red">	</label>
+						<button image="/Recursos/Imagenes/consultar.ico"
+							onClick="" tooltiptext="Consultar" label="" />
+						<label value="(*)" style="color:red"></label>
 					</hbox>
-				
+
 				</row>
 				<row>
 					<hbox>
-						<listbox multiple="true" mold="paging"
-							pageSize="10" width="540px" height="100px" id="lbDatos">
+						<listbox multiple="true" mold="paging" 
+							pageSize="10" width="450px" height="100px" id="lbDatos">
 							<listhead>
-								<listheader style="border:none" label="Cedula o RIF" width="100px"
-									align="center" />
-								<listheader style="border:none" label="Nombre o Razón Social"
-									width="150px" align="center" />
+								<listheader style="border:none"
+									label="Cedula o RIF" width="100px" align="center" />
+								<listheader style="border:none"
+									label="Nombre o Razón Social" width="150px" align="center" />
 							</listhead>
 
 							<listitem>
@@ -72,101 +73,70 @@
 							</listitem>
 						</listbox>
 						<vbox height="50px">
-						
+
 							<button id="btnModificar"
 								image="/Recursos/Imagenes/editar.ico" />
-							
+
 						</vbox>
-						
-					
+
+
 					</hbox>
 				</row>
 			</rows>
 		</grid>
-		
-<!-- 		<div> -->
-<!-- 			<grid> -->
-<!-- 				<columns> -->
-<!-- 					<column label="" width="200px"></column> -->
-<!-- 					<column label="" width="200px"></column> -->
-<!-- 				</columns> -->
-<!-- 				<rows> -->
-<!-- 					<row> -->
-<!-- 						Cedula o RIF -->
-<!-- 						<hbox> -->
-<!-- 							<bandbox id="bd"> -->
-<!-- 								<bandpopup></bandpopup> -->
-<!-- 							</bandbox> -->
-<!-- 							<button label="" -->
-<!-- 								image="/Administracion/images/proveedor.png" -->
-<!-- 								tooltiptext="Nuevo Benefactor" /> -->
 
 
-<!-- 						</hbox> -->
-<!-- 						Nombre -->
-<!-- 						<textbox id="tb" disabled="true"></textbox> -->
-<!-- 					</row> -->
-
-<!-- 					<row> -->
-<!-- 						Fecha -->
-<!-- 						<datebox></datebox> -->
-<!-- 						Monto a donar -->
-<!-- 						<hbox> -->
-<!-- 							<decimalbox value="0"></decimalbox> -->
-<!-- 							<label>BsF</label> -->
-<!-- 						</hbox> -->
-<!-- 					</row> -->
-
-<!-- 				</rows> -->
-<!-- 			</grid> -->
-<!-- 		</div> -->
-	
 		<div align="left">
-		<panel collapsible="true" title="Datos de la Donación"
-					open="false">
+			<panel collapsible="true" title="Dinero a Donar"
+				open="false">
 				<panelchildren>
-				<div>
-							<grid>
+					<div>
+						<grid>
 
-								<rows>
+							<rows>
 
-									<row>
-										<grid>
-											<columns>
-												<column label=""
-													width="220px">
-												</column>
-												<column label=""
-													width="252px">
-												</column>
-												<column label=""
-													width="180px">
-												</column>
-												<column label=""
-													width="180px">
-												</column>
+								<row>
+									<grid>
+										<columns>
+											<column label=""
+												width="220px">
+											</column>
+											<column label=""
+												width="252px">
+											</column>
+											<column label=""
+												width="180px">
+											</column>
+											<column label=""
+												width="180px">
+											</column>
 
 
-											</columns>
-											<rows>
-												<row style="border:none">
-													
-													<label 
-														value="Monto de la donación">
-													</label>
-													<textbox 
-														width="180px" disabled="true">
-													</textbox>
-													
-												</row>
-												<row style="border:none">
-													
-													<label 
-														value="Forma de Pago">
-													</label>
-													<hbox align="center">
-													<combobox id="CB1" value="Seleccione--"
-														onSelect="mostrar()" width="160px">
+										</columns>
+										<rows>
+											<row style="border:none">
+												
+													<label
+													value="Monto de la donación">
+												</label>
+												<hbox>
+												<doublebox width="180px">
+												</doublebox>
+												<label value="(*)"
+												style="color:red">
+												</label>
+												</hbox>
+												
+
+											</row>
+											<row style="border:none">
+
+												<label
+													value="Forma de Pago">
+												</label>
+												<hbox align="center">
+													<combobox id="CB1"
+														value="Seleccione--" onSelect="mostrar()" width="160px">
 														<comboitem
 															value="1" label="Efectivo">
 														</comboitem>
@@ -180,162 +150,193 @@
 															value="4" label="Transferencia">
 														</comboitem>
 														<comboitem
-														value="5" label="Cheque">
+															value="5" label="Cheque">
 														</comboitem>
 													</combobox>
-													<label width="10px" value="(*)" style="color:red">	</label>
-													</hbox>
-													<label
-														value="Monto Cancelado">
+													<label width="10px"
+														value="(*)" style="color:red">
 													</label>
-													<textbox
-														width="180px">
-													</textbox>
+												</hbox>
+												<label
+													value="Monto Cancelado">
+												</label>
+												<textbox
+													width="180px">
+												</textbox>
 
 
-												</row>
-												<row style="border:none" id="row1"
-													visible="false">
-													<label
-														value="Nro. de Documento">
-													</label>
-	
-											<textbox width="180px">
-													</textbox>
+											</row>
+											<row style="border:none"
+												id="row1" visible="false">
+												<label
+													value="Nro. de Documento">
+												</label>
 
-													<label
-														value="Banco">
-													</label>
-													<combobox value="Seleccione--"
-														width="150px">
-														<comboitem
-															label="Banesco">
-														</comboitem>
-														<comboitem
-															label="Mercantil">
-														</comboitem>
-														<comboitem
-															label="BOD">
-														</comboitem>
-														<comboitem
-															label="Provincial">
-														</comboitem>
-														<comboitem
-															label="Venezuela">
-														</comboitem>
-													</combobox>
+												<textbox
+													width="180px">
+												</textbox>
 
-												</row>
-												<row style="border:none" id="row2"
-													visible="false">
-													<label
-														value="Tipo Tarjeta">
-													</label>
-													<combobox value="Seleccione--"
-														width="170px">
-														<comboitem
-															label="Visa">
-														</comboitem>
-														<comboitem
-															label="MarterCard">
-														</comboitem>
-														<comboitem
-															label="American Express">
-														</comboitem>
-													</combobox>
-												</row>
-								</rows>
-										</grid>
-									</row>
-									
-								</rows>
+												<label value="Banco">
+												</label>
+												<combobox
+													value="Seleccione--" width="150px">
+													<comboitem
+														label="Banesco">
+													</comboitem>
+													<comboitem
+														label="Mercantil">
+													</comboitem>
+													<comboitem
+														label="BOD">
+													</comboitem>
+													<comboitem
+														label="Provincial">
+													</comboitem>
+													<comboitem
+														label="Venezuela">
+													</comboitem>
+												</combobox>
 
-							</grid>
+											</row>
+											<row style="border:none"
+												id="row2" visible="false">
+												<label
+													value="Tipo Tarjeta">
+												</label>
+												<combobox
+													value="Seleccione--" width="170px">
+													<comboitem
+														label="Visa">
+													</comboitem>
+													<comboitem
+														label="MarterCard">
+													</comboitem>
+													<comboitem
+														label="American Express">
+													</comboitem>
+												</combobox>
+											</row>
+										</rows>
+									</grid>
+								</row>
 
-						</div>
-				
+							</rows>
+
+						</grid>
+
+					</div>
+
 				</panelchildren>
-				
-			</panel>			
+
+			</panel>
 		</div>
-		<panel collapsible="true" title="Materiales a Donar">
+		<panel collapsible="true" title="Materiales a Donar" open="false">
 			<panelchildren>
-				<grid>
-					<columns>
-						<column width="40%">
-							<hbox>
-								<label>Codigo de Material</label>
-								<bandbox></bandbox>
-								<button label=""
-									image="/Recursos/Imagenes/basket_add.png"
-									tooltiptext="Nuevo Artículo" />
+				<hbox>
+					<grid>
+						<rows>
+							<row>
+								<hbox height="30px" align="center">
+									<label value="Código del Material" />
+									<space width="5px" />
+									<textbox id="txtMaterial"
+										width="100px" height="20px" />
+									<button
+										image="/Recursos/Imagenes/consultar.ico" onClick=""
+										tooltiptext="Consultar" label="" />
+									<label value="(*)"
+										style="color:red">
+									</label>
+									<space width="5px" />
+									<label value="Descripción" />
+									<space />
+									<textbox id="txtDescripcion"
+										width="140px" height="20px" />
+									<button
+										image="/Recursos/Imagenes/consultar.ico" onClick=""
+										tooltiptext="Consultar" label="" />
+									<label value="(*)"
+										style="color:red">
+									</label>
+									<space width="5px" />
+									<label value="Cantidad" />
+									<intbox id="txtCantidad"
+										width="50px">
+									</intbox>
+								</hbox>
 
+							</row>
+						</rows>
+					</grid>
+				</hbox>
+				<separator></separator>
+				<groupbox width="500px">
+					<caption>Listado de Materiales a Donar</caption>
+					<div>
+						<grid>
+							<rows>
+								<row>
+									<hbox>
+										<listbox multiple="true" mold="paging"
+											pageSize="10" width="450px" height="100px" id="lbMateriales">
+											<listhead>
+											<listheader style="border:none" label="Item" width="50px"
+											align="center" />
+											<listheader style="border:none" label="Código"
+											width="100px" align="center" />
+											<listheader style="border:none" label="Descripción"
+											width="200px" align="center" />
+											<listheader style="border:none" label="Cantidad"
+											width="100px" align="center" />
+											</listhead>
+											<listitem height="25px">
+												<listcell label="1" />
+												<listcell label="ca20" />
+												<listcell label="Careta 20''" />
+												<listcell label="1" />
+											</listitem>
+											<listitem height="25px">
+												<listcell label="2" />
+												<listcell label="ba23" />
+												<listcell label="Bate 23''" />
+												<listcell label="4" />
+											</listitem>
+										</listbox>
+									
+									
+										<vbox height="50px">
+											<button
+												image="/Recursos/Imagenes/agregar.ico" />
+											<separator height="5px" />
+											<button
+												image="/Recursos/Imagenes/editar.ico" />
+											<separator height="5px" />
+											<button
+												image="/Recursos/Imagenes/quitar.ico" />
+										</vbox>
+									</hbox>
+								</row>
 
-							</hbox>
-						</column>
-						<column width="20%">
-							Descripcion
-							<textbox disabled="true"></textbox>
-						</column>
-						<column width="20%">
-							Cantidad
-							<spinner></spinner>
-						</column>
-						<column width="10%">
-							<button label=""
-								image="/Recursos/Imagenes/agregar.ico"
-								tooltiptext="Agregar Artículo a la Grid" />
+							</rows>
+						</grid>
 
-							<button label=""
-								image="/Recursos/Imagenes/quitar.ico"
-								tooltiptext="Quitar Artículo de la Grid" />
-						</column>
-					</columns>
-				</grid>
-				<grid>
-					<columns>
-						<column>
-							<checkbox onCheck="setOn1()"></checkbox>
-						</column>
-						<column label="Item"></column>
-						<column>Codigo</column>
-						<column>Descripcion</column>
-						<column>Cantidad</column>
+					</div>
+				</groupbox>
 
-					</columns>
-					<rows>
-						<row>
-							<checkbox id="c1"></checkbox>
-							<label value="1"></label>
-							<label>ba23</label>
-							<label>Bate 23"</label>
-							<label>10</label>
-
-						</row>
-						<row>
-							<checkbox id="c2"></checkbox>
-							<label value="1"></label>
-
-							<label>ca20</label>
-							<label>Careta 20"</label>
-							<label>5</label>
-
-						</row>
-					</rows>
-				</grid>
 			</panelchildren>
 		</panel>
+		<div align="left">
+			<label value=" (*) Campo Obligatorio" style="color:red" />
+			</div>
 		<div align="right">
 			<button image="/Recursos/Imagenes/guardar.ico"
-				onClick="" tooltiptext="Aceptar" label="Registrar" />
+					onClick="" label="Guardar" />
+			<button image="/Recursos/Imagenes/imprimir.ico" onClick=""
+				tooltiptext="Cancelar" label="Imprimir" />	
 			<button image="/Recursos/Imagenes/cancelar.ico"
-				onClick="" tooltiptext="Cancelar" label="Cancelar" />
-			<button image="/Recursos/Imagenes/atras.ico" onClick=""
-				tooltiptext="Salir" label="Salir" />
-				<attribute name="onClick">
-				winPR.onClose();
-				</attribute>
-				
+					onClick="" label="Cancelar" />
+			<button image="/Recursos/Imagenes/atras.ico"
+					onClick="donaciones.onClose()" label="Salir" />
 		</div>
 	</window>
 </zk>
