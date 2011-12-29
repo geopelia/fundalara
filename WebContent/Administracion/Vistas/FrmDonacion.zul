@@ -1,56 +1,262 @@
 <?page title="Donaciones" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window id="winD" title="Donaciones" border="normal" width="100%"
-		>
-
-		<zscript><![CDATA[ ]]></zscript>
+	<window id="donaciones" title="Donaciones" border="normal" width="690px">
 		<zscript><![CDATA[
 	//@IMPORT
 	import org.zkoss.Version;
 ]]></zscript>
 		<zscript><![CDATA[
 	//@DECLARATION
-	void setOn1() {
-		c1.setChecked(true);
-		c2.setChecked(true);
+	public void mostrar() {
+		String var = CB1.getSelectedItem().getValue().toString();
 
-	}
+		if (var.equals("1")) {
+			row1.setVisible(false);
+			row2.setVisible(false);
+
+		} else if (var.equals("2")) {
+			row1.setVisible(true);
+			row2.setVisible(true);
+
+		} else if (var.equals("3")) {
+			row1.setVisible(true);
+			row2.setVisible(true);
+
+		} else {
+			row1.setVisible(true);
+			row2.setVisible(false);
+
+		}
+}
 ]]></zscript>
-		<div>
-			<grid>
-				<columns>
-					<column label="" width="200px"></column>
-					<column label="" width="200px"></column>
-				</columns>
-				<rows>
-					<row>
-						Cedula o RIF
-						<hbox>
-							<bandbox id="bd">
-								<bandpopup></bandpopup>
-							</bandbox>
-							<button label=""
-								image="/Administracion/images/proveedor.png"
-								tooltiptext="Nuevo Benefactor" />
+	<grid>
+			<rows>
+				<row>
+					<hbox height="30px" align="center">
+						<label value="Cédula o RIF" />
+						<space width="10px" />
+						<textbox id="txtCedula" width="130px"
+							height="20px" />
+						<button image="/Recursos/Imagenes/consultar.ico" onClick=""
+					tooltiptext="Aceptar" label="" />
+						<label value="(*)" style="color:red">	</label>	
+						<space width="10px" />
+						<label value="Nombre o Razón Social" />
+						<space />
+						<textbox id="txtNombre" width="140px"
+							height="20px" />
+						<button image="/Recursos/Imagenes/consultar.ico" onClick=""
+				tooltiptext="Aceptar" label="" />	
+						<label value="(*)" style="color:red">	</label>
+					</hbox>
+				
+				</row>
+				<row>
+					<hbox>
+						<listbox multiple="true" mold="paging"
+							pageSize="10" width="540px" height="100px" id="lbDatos">
+							<listhead>
+								<listheader style="border:none" label="Cedula o RIF" width="100px"
+									align="center" />
+								<listheader style="border:none" label="Nombre o Razón Social"
+									width="150px" align="center" />
+							</listhead>
+
+							<listitem>
+								<listcell label="18215628" />
+								<listcell label="Miguel Pérez" />
+							</listitem>
+							<listitem>
+								<listcell label="12589632" />
+								<listcell label="Roman Hilvana" />
+							</listitem>
+						</listbox>
+						<vbox height="50px">
+						
+							<button id="btnModificar"
+								image="/Recursos/Imagenes/editar.ico" />
+							
+						</vbox>
+						
+					
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		
+<!-- 		<div> -->
+<!-- 			<grid> -->
+<!-- 				<columns> -->
+<!-- 					<column label="" width="200px"></column> -->
+<!-- 					<column label="" width="200px"></column> -->
+<!-- 				</columns> -->
+<!-- 				<rows> -->
+<!-- 					<row> -->
+<!-- 						Cedula o RIF -->
+<!-- 						<hbox> -->
+<!-- 							<bandbox id="bd"> -->
+<!-- 								<bandpopup></bandpopup> -->
+<!-- 							</bandbox> -->
+<!-- 							<button label="" -->
+<!-- 								image="/Administracion/images/proveedor.png" -->
+<!-- 								tooltiptext="Nuevo Benefactor" /> -->
 
 
-						</hbox>
-						Nombre
-						<textbox id="tb" disabled="true"></textbox>
-					</row>
+<!-- 						</hbox> -->
+<!-- 						Nombre -->
+<!-- 						<textbox id="tb" disabled="true"></textbox> -->
+<!-- 					</row> -->
 
-					<row>
-						Fecha
-						<datebox></datebox>
-						Monto a donar
-						<hbox>
-							<decimalbox value="0"></decimalbox>
-							<label>BsF</label>
-						</hbox>
-					</row>
+<!-- 					<row> -->
+<!-- 						Fecha -->
+<!-- 						<datebox></datebox> -->
+<!-- 						Monto a donar -->
+<!-- 						<hbox> -->
+<!-- 							<decimalbox value="0"></decimalbox> -->
+<!-- 							<label>BsF</label> -->
+<!-- 						</hbox> -->
+<!-- 					</row> -->
 
-				</rows>
-			</grid>
+<!-- 				</rows> -->
+<!-- 			</grid> -->
+<!-- 		</div> -->
+	
+		<div align="left">
+		<panel collapsible="true" title="Datos de la Donación"
+					open="false">
+				<panelchildren>
+				<div>
+							<grid>
+
+								<rows>
+
+									<row>
+										<grid>
+											<columns>
+												<column label=""
+													width="220px">
+												</column>
+												<column label=""
+													width="252px">
+												</column>
+												<column label=""
+													width="180px">
+												</column>
+												<column label=""
+													width="180px">
+												</column>
+
+
+											</columns>
+											<rows>
+												<row style="border:none">
+													
+													<label 
+														value="Monto de la donación">
+													</label>
+													<textbox 
+														width="180px" disabled="true">
+													</textbox>
+													
+												</row>
+												<row style="border:none">
+													
+													<label 
+														value="Forma de Pago">
+													</label>
+													<hbox align="center">
+													<combobox id="CB1" value="Seleccione--"
+														onSelect="mostrar()" width="160px">
+														<comboitem
+															value="1" label="Efectivo">
+														</comboitem>
+														<comboitem
+															value="2" label="Débito">
+														</comboitem>
+														<comboitem
+															value="3" label="Crédito">
+														</comboitem>
+														<comboitem
+															value="4" label="Transferencia">
+														</comboitem>
+														<comboitem
+														value="5" label="Cheque">
+														</comboitem>
+													</combobox>
+													<label width="10px" value="(*)" style="color:red">	</label>
+													</hbox>
+													<label
+														value="Monto Cancelado">
+													</label>
+													<textbox
+														width="180px">
+													</textbox>
+
+
+												</row>
+												<row style="border:none" id="row1"
+													visible="false">
+													<label
+														value="Nro. de Documento">
+													</label>
+	
+											<textbox width="180px">
+													</textbox>
+
+													<label
+														value="Banco">
+													</label>
+													<combobox value="Seleccione--"
+														width="150px">
+														<comboitem
+															label="Banesco">
+														</comboitem>
+														<comboitem
+															label="Mercantil">
+														</comboitem>
+														<comboitem
+															label="BOD">
+														</comboitem>
+														<comboitem
+															label="Provincial">
+														</comboitem>
+														<comboitem
+															label="Venezuela">
+														</comboitem>
+													</combobox>
+
+												</row>
+												<row style="border:none" id="row2"
+													visible="false">
+													<label
+														value="Tipo Tarjeta">
+													</label>
+													<combobox value="Seleccione--"
+														width="170px">
+														<comboitem
+															label="Visa">
+														</comboitem>
+														<comboitem
+															label="MarterCard">
+														</comboitem>
+														<comboitem
+															label="American Express">
+														</comboitem>
+													</combobox>
+												</row>
+								</rows>
+										</grid>
+									</row>
+									
+								</rows>
+
+							</grid>
+
+						</div>
+				
+				</panelchildren>
+				
+			</panel>			
 		</div>
 		<panel collapsible="true" title="Materiales a Donar">
 			<panelchildren>

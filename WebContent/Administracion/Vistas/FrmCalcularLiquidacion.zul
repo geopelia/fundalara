@@ -41,13 +41,7 @@
 		}
 
 	}
-	void setOn1() {
-		c1.setChecked(true);
-		c2.setChecked(true);
-		c3.setChecked(true);
-		c4.setChecked(true);
-		c5.setChecked(true);
-	}
+	
 ]]></zscript>
 
 <zscript><![CDATA[//@DECLARATION 
@@ -121,8 +115,7 @@
 						<row>
 
 							<groupbox mold="3d" closable="false"
-								style="padding: 10px;" width="390
-		">
+								style="padding: 10px;" width="390">
 
 								<div>
 									<grid>

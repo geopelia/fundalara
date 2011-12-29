@@ -28,9 +28,7 @@ public class DaoActividadEntrenamiento extends GenericDao {
 	public List<ActividadEntrenamiento> buscarTodo(Categoria c, DatoBasico f){		
 		Session session = getSession();
 		Transaction tx =  session.beginTransaction();
-
 		Criteria where =  session.createCriteria(ActividadEntrenamiento.class);
-
 		where.add(Restrictions.eq("categoria", c));
 		where.add(Restrictions.eq("datoBasico", f));		
 		where.add(Restrictions.eq("estatus", "A"));
@@ -48,8 +46,6 @@ public class DaoActividadEntrenamiento extends GenericDao {
 	
 	public List<ActividadEntrenamiento> buscarPorCategoria(Categoria c) {
 		// TODO Auto-generated method stub
-		Session session = getSession();
-		Transaction tx =  session.beginTransaction();
 		Criteria where =  getSession().createCriteria(ActividadEntrenamiento.class);
 		where.add(Restrictions.eq("categoria", c));
 		return where.list();
