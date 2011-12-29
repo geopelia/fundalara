@@ -44,6 +44,12 @@ public class ServicioMaterial implements IServicioMaterial {
 		return daoMaterial.listarActivos(Material.class);
 	}
 
+	@Override
+	public int generarCodigo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 //	@Override
 //	public Material buscarPorCodigo(int cod) {
@@ -51,8 +57,8 @@ public class ServicioMaterial implements IServicioMaterial {
 //	}	
 	
 	
-	public int generarCodigo(){		
-		return daoMaterial.generarCodigo(Material.class);
-	}
+//	public int generarCodigo(){		
+//		return daoMaterial.generarCodigo(Material.class);
+//	}
 
 }

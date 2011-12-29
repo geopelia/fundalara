@@ -13,18 +13,11 @@ import modelo.DatoBasico;
 import dao.generico.GenericDao;
 
 public class DaoActividadEntrenamiento extends GenericDao {
-<<<<<<< HEAD
-	
-	public ActividadEntrenamiento buscarClaveForegn(Categoria c, DatoBasico f,Integer idActividad){		
-		Session session = getSession();
-		Transaction tx =  session.beginTransaction();
-		Criteria where =  getSession().createCriteria(ActividadEntrenamiento.class);
-=======
+
 	public ActividadEntrenamiento buscarClaveForegn(Categoria c, DatoBasico f,int idActividad){
 		Session session = getSession();
 		Transaction tx =  session.beginTransaction();
 		Criteria where =  session.createCriteria(ActividadEntrenamiento.class);
->>>>>>> upstream/master
 		where.add(Restrictions.eq("categoria", c));
 		where.add(Restrictions.eq("datoBasico", f));
 		where.add(Restrictions.eq("codActividadEntrenamiento", idActividad));
@@ -35,11 +28,9 @@ public class DaoActividadEntrenamiento extends GenericDao {
 	public List<ActividadEntrenamiento> buscarTodo(Categoria c, DatoBasico f){		
 		Session session = getSession();
 		Transaction tx =  session.beginTransaction();
-<<<<<<< HEAD
-		Criteria where =  getSession().createCriteria(ActividadEntrenamiento.class);
-=======
+
 		Criteria where =  session.createCriteria(ActividadEntrenamiento.class);
->>>>>>> upstream/master
+
 		where.add(Restrictions.eq("categoria", c));
 		where.add(Restrictions.eq("datoBasico", f));		
 		where.add(Restrictions.eq("estatus", "A"));

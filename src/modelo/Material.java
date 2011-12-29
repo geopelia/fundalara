@@ -227,14 +227,14 @@ public class Material implements java.io.Serializable {
 		this.materialActividads = materialActividads;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "material")
-	public Set<DonacionMaterial> getDonacionMaterials() {
-		return this.donacionMaterials;
-	}
-
-	public void setDonacionMaterials(Set<DonacionMaterial> donacionMaterials) {
-		this.donacionMaterials = donacionMaterials;
-	}
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "material")
+//	public Set<DonacionMaterial> getDonacionMaterials() {
+//		return this.donacionMaterials;
+//	}
+//
+//	public void setDonacionMaterials(Set<DonacionMaterial> donacionMaterials) {
+//		this.donacionMaterials = donacionMaterials;
+//	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "material")
 	public Set<RecepcionMaterial> getRecepcionMaterials() {

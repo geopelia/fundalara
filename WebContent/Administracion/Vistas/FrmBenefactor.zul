@@ -2,8 +2,10 @@
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 <zk>
-	<window id="Bene" apply="controlador.administracion.BenefactorController" title="Benefactores" border="normal"
+	<window id="Bene"  title="Benefactores" border="normal"
 		width="690px">
+	<!-- <window id="Bene" apply="controlador.administracion.BenefactorController" title="Benefactores" border="normal"
+		width="690px">  -->
 <zscript>
 		<![CDATA[
 			public void MostrarCatalogoBenefactor() {
@@ -12,7 +14,7 @@
 				}
 			
 			
-			   modelo.Benefactor benefactor = new modelo.Benefactor();
+			/*   modelo.Benefactor benefactor = new modelo.Benefactor();
 			   void guardar(){
 				   modelo.Parroquia parroquia = new modelo.Parroquia();
 				   
@@ -26,7 +28,7 @@
 				     
 				     servicioBenefactor.agregar(benefactor);
 				     benefactor = new modelo.Benefactor();
-				     binder.loadAll();
+				     binder.loadAll(); */
 				     
 			   }
 			

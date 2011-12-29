@@ -196,14 +196,14 @@ public class DocumentoAcreedor implements java.io.Serializable {
 		this.ingresoDocumentoAcreedors = ingresoDocumentoAcreedors;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "documentoAcreedor")
-	public Set<DonacionMaterial> getDonacionMaterials() {
-		return this.donacionMaterials;
-	}
-
-	public void setDonacionMaterials(Set<DonacionMaterial> donacionMaterials) {
-		this.donacionMaterials = donacionMaterials;
-	}
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "documentoAcreedor")
+//	public Set<DonacionMaterial> getDonacionMaterials() {
+//		return this.donacionMaterials;
+//	}
+//
+//	public void setDonacionMaterials(Set<DonacionMaterial> donacionMaterials) {
+//		this.donacionMaterials = donacionMaterials;
+//	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "documentoAcreedor")
 	public Set<DocumentoIndumentaria> getDocumentoIndumentarias() {
