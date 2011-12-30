@@ -2,6 +2,7 @@ package servicio.interfaz;
 
 import java.util.List;
 
+import modelo.Personal;
 import modelo.PersonalCargo;
 import modelo.PersonalConceptoNomina ;
 
@@ -18,6 +19,6 @@ public interface IServicioPersonalConceptoNomina {
 	public abstract List<PersonalConceptoNomina > listarActivos();
 	
 	public abstract PersonalConceptoNomina  buscarPorCodigo (PersonalConceptoNomina  d);
-
-
+	
+	public abstract List<PersonalConceptoNomina> listarConceptosByPersonal(Personal d);
 }

@@ -1,6 +1,6 @@
 <?page title="Donaciones" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window id="donaciones" title="Donaciones" closable="true" border="normal"
+	<window id="donaciones" apply="controlador.administracion.CntrlDonacion" title="Donaciones" closable="true" border="normal"
 		width="690px">
 		<zscript><![CDATA[
 	//@IMPORT
@@ -9,7 +9,7 @@
 		<zscript><![CDATA[
 	//@DECLARATION
 	public void mostrar() {
-		String var = CB1.getSelectedItem().getValue().toString();
+		String var = cmbFormaPago.getSelectedItem().getValue().toString();
 
 		if (var.equals("1")) {
 			row1.setVisible(false);
@@ -135,7 +135,7 @@
 													value="Forma de Pago">
 												</label>
 												<hbox align="center">
-													<combobox id="CB1"
+													<combobox id="cmbFormaPago"
 														value="Seleccione--" onSelect="mostrar()" width="160px">
 														<comboitem
 															value="1" label="Efectivo">
@@ -178,7 +178,7 @@
 
 												<label value="Banco">
 												</label>
-												<combobox
+												<combobox id="cmbBanco"
 													value="Seleccione--" width="150px">
 													<comboitem
 														label="Banesco">
@@ -203,7 +203,7 @@
 												<label
 													value="Tipo Tarjeta">
 												</label>
-												<combobox
+												<combobox id="cmbTarjeta"
 													value="Seleccione--" width="170px">
 													<comboitem
 														label="Visa">

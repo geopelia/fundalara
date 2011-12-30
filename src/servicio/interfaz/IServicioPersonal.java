@@ -18,5 +18,6 @@ public interface IServicioPersonal {
 	public abstract List<Personal> listarActivos();
 	
 	public abstract Personal buscarPorCodigo (Personal d);
-
+	
+	public abstract Personal buscarByCedulaRif(String d);
 }

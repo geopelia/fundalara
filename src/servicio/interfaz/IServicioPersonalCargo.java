@@ -2,6 +2,7 @@ package servicio.interfaz;
 
 import java.util.List;
 
+import modelo.DatoBasico;
 import modelo.Personal;
 import modelo.PersonalCargo;
 
@@ -17,7 +18,7 @@ public interface IServicioPersonalCargo {
 	
 	public abstract List<PersonalCargo> listarActivos();
 	
-	public abstract PersonalCargo buscarPorCodigo (PersonalCargo d);
-
-
+	public abstract PersonalCargo buscarPorCodigo (String d);
+	
+	public abstract PersonalCargo buscarCargoActual(Personal d);
 }

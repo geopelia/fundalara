@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.general.DaoPersonalConceptoNomina;
 
+import modelo.Personal;
 import modelo.PersonalCargo;
 import modelo.PersonalConceptoNomina;
 import servicio.interfaz.IServicioPersonalConceptoNomina;
@@ -54,4 +55,8 @@ public class ServicioPersonalConceptoNomina implements
 		return null;
 	}
 
+	@Override
+	public List<PersonalConceptoNomina> listarConceptosByPersonal(Personal d) {
+		return daoPersonalConceptoNomina.listarConceptosByPersonal(d);
+	}
 }

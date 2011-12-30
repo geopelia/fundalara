@@ -21,4 +21,6 @@ public interface IServicioDatoBasico {
 	
 	public abstract List<DatoBasico> listarParroquias();
 
+	public abstract List<DatoBasico> listarPorPadre(Integer i, Integer e);
+
 }

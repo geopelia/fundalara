@@ -50,5 +50,12 @@ public class ServicioConceptoNomina implements IServicioConceptoNomina {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	@Override
+	public ConceptoNomina buscarPorDescripcion(String d) {
+		// TODO Auto-generated method stub
+		return daoConceptoNomina.buscarPorDescripcion(d);
+	}
+	
+	
 }

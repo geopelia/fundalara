@@ -55,6 +55,15 @@ public class DaoDatoBasico extends GenericDao {
 		return (DatoBasico) c.list().get(0);
 	}
 	
+	public DatoBasico buscarPorNombre(String td) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		Transaction tx =  session.beginTransaction();
+		Criteria c = getSession().createCriteria(DatoBasico.class);
+		c.add(Restrictions.eq("nombre", td));
+		return (DatoBasico) c.list().get(0);
+	}
+	
 
 	public List<DatoBasico> listarParroquias(){
 		  

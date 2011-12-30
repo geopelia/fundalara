@@ -24,6 +24,18 @@ public class ServicioCompetencia implements IServicioCompetencia {
 
 	}
 
+	/*@Override
+	public void actualizar(Competencia c) {
+		// TODO Auto-generated method stub
+
+	}*/
+
+	/*@Override
+	public Competencia buscarPorCodigo(Competencia c) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+
 	@Override
 	public List<Competencia> listar() {
 		return daoCompetencia.listar(Competencia.class);
@@ -31,7 +43,7 @@ public class ServicioCompetencia implements IServicioCompetencia {
 
 	@Override
 	public List<Competencia> listarActivos() {
-	
+		//return daoCompetencia.listarActivos(Competencia.class);
 		return null;
 	}
 
@@ -45,7 +57,8 @@ public class ServicioCompetencia implements IServicioCompetencia {
 
 	@Override
 	public List<Competencia> listarPorEstatus(int estatus) {
-		return daoCompetencia.listarPorEstatus(estatus);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

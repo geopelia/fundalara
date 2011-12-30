@@ -10,13 +10,15 @@ import org.hibernate.criterion.Restrictions;
 import dao.generico.GenericDao;
 
 public class DaoPersonaJuridica extends GenericDao {
-
 	
-	public PersonaJuridica buscarPorCedulaRif(String d){	
+	public PersonaJuridica buscarByCedulaRif(String d){	
 		Session session = getSession();
 		Transaction tx = session.beginTransaction();
 		Criteria c = getSession().createCriteria(PersonaJuridica.class);
 		c.add(Restrictions.eq("cedulaRif",d)).list();
 		return (PersonaJuridica)c.list().get(0);
 	}
+
 }
+
+

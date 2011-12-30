@@ -2,9 +2,10 @@ package servicio.implementacion;
 
 import java.util.List;
 
+import org.hibernate.criterion.Restrictions;
+
 import dao.general.DaoPersonaJuridica;
 
-import modelo.Nomina;
 import modelo.PersonaJuridica;
 import servicio.interfaz.IServicioPersonaJuridica;
 
@@ -33,26 +34,29 @@ public class ServicioPersonaJuridica implements IServicioPersonaJuridica {
 	@Override
 	public void actualizar(PersonaJuridica c) {
 		daoPersonaJuridica.actualizar(c);
-		
 	}
 
 	@Override
-	public List<PersonaJuridica> listar() {
+	public List listar() {
+		// TODO Auto-generated method stub
 		return daoPersonaJuridica.listar(PersonaJuridica.class);
+	}
+	
+	
+	public PersonaJuridica buscarPorCedulaRif(String s){
+		return (PersonaJuridica) daoPersonaJuridica.buscarByCedulaRif(s);
 	}
 
 	@Override
 	public List<PersonaJuridica> listarActivos() {
-		return daoPersonaJuridica.listarActivos(PersonaJuridica.class);
-	}
-
-	@Override
-	public PersonaJuridica buscarPorCodigo (PersonaJuridica d) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public PersonaJuridica buscarPorCedulaRif(String s){
-		return (PersonaJuridica) daoPersonaJuridica.buscarPorCedulaRif(s);
+	@Override
+	public PersonaJuridica buscarPorCodigo(PersonaJuridica d) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }

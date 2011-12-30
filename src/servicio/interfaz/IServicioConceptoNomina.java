@@ -17,6 +17,6 @@ public interface IServicioConceptoNomina {
 		public abstract List<ConceptoNomina> listarActivos();
 		
 		public abstract  ConceptoNomina buscarPorCodigo (ConceptoNomina d);
-
-
+		
+		public abstract ConceptoNomina buscarPorDescripcion(String d);
 }

@@ -4,7 +4,9 @@ import java.util.List;
 
 import dao.general.DaoPersonalCargo;
 
+import modelo.DatoBasico;
 import modelo.Nomina;
+import modelo.Personal;
 import modelo.PersonalCargo;
 import servicio.interfaz.IServicioPersonalCargo;
 
@@ -46,9 +48,11 @@ public class ServicioPersonalCargo implements IServicioPersonalCargo {
 	}
 
 	@Override
-	public PersonalCargo buscarPorCodigo (PersonalCargo d) {
-		// TODO Auto-generated method stub
+	public PersonalCargo buscarPorCodigo (String d) {
 		return null;
 	}
-
+	
+	public PersonalCargo buscarCargoActual(Personal d){
+		return daoPersonalCargo.buscarCargoActual(d);
+	}
 }

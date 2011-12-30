@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.general.DaoPersonal;
 
+import modelo.Persona;
 import modelo.Personal;
 import modelo.Personal;
 import servicio.interfaz.IServicioPersonal;
@@ -51,6 +52,11 @@ public class ServicioPersonal implements IServicioPersonal {
 	public Personal buscarPorCodigo (Personal d) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public Personal buscarByCedulaRif(String d) {
+		return (Personal) daoPersonal.buscarByCedulaRif(d);
 	}
 
 }

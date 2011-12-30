@@ -41,8 +41,6 @@ public class ServicioDatoBasico implements IServicioDatoBasico {
 		return daoDatoBasico.buscarPorTipoDato(td);
 	}
 	
-
-
 	public DaoDatoBasico getDaoDatoBasico() {
 		return daoDatoBasico;
 	}
@@ -52,22 +50,29 @@ public class ServicioDatoBasico implements IServicioDatoBasico {
 	}
 
 	@Override
-	public DatoBasico buscarPorCodigo(Integer i) {
+	public DatoBasico buscarPorCodigo(Integer td) {
 		// TODO Auto-generated method stub
-		return daoDatoBasico.buscarPorCodigo(i);
+		return daoDatoBasico.buscarPorCodigo(td);
 	}	
 	
-	public List<DatoBasico> listarPorTipoDato(String s){
-		return daoDatoBasico.listarPorTipoDeDato(s);	
+	public DatoBasico buscarPorNombre(String td) {
+		// TODO Auto-generated method stub
+		return daoDatoBasico.buscarPorNombre(td);
 	}
 	
-	public List<DatoBasico> listarPorPadre(String s,Integer i){
-		return daoDatoBasico.listarPorPadre(s,i);
-		}
+	@Override
+	public List<DatoBasico> listarPorPadre(Integer i,Integer e){
+		return daoDatoBasico.getSession().createCriteria(DatoBasico.class).add(Restrictions.eq("tipoDato.codigoTipoDato",i)).add(Restrictions.eq("datoBasico.codigoDatoBasico", e)).list();
+	}
+	
+	public List<DatoBasico> listarPorTipoDato(TipoDato td){
+		return daoDatoBasico.buscarPorTipoDato(td);
+			
+	}
 
 	@Override
 	public List<DatoBasico> listarParroquias() {
-		return daoDatoBasico.listarParroquias();		
+		// TODO Auto-generated method stub
+		return null;
 	}
-
 }
