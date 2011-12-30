@@ -30,7 +30,7 @@
 				     benefactor = new modelo.Benefactor();
 				     binder.loadAll(); */
 				     
-			   }
+			   
 			
 		
 		]]>
