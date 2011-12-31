@@ -6,6 +6,7 @@ import javax.servlet.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
 
 
@@ -19,6 +20,9 @@ import org.hibernate.SessionFactory;
 public class SessionManager implements Filter
 {
     private static  SessionFactory sessionFactory;
+    private static String CONFIG_FILE_LOCATION = "/hibernate.cfg.xml";
+    private  static Configuration configuration = new Configuration();
+    private static String configFile = CONFIG_FILE_LOCATION;
 
     static
     {
@@ -78,9 +82,33 @@ public class SessionManager implements Filter
     //Para obtener una session
     public static Session getSession()
     {   
-    	sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-        return sessionFactory.getCurrentSession();
+//    	try {
+    		sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+//            
+//    	} catch (Exception e) {
+//			// TODO: handle exception
+//    		e.printStackTrace();
+//		}
+    	//return sessionFactory.getCurrentSession();
+    	
+			rebuildSessionFactory();
+		
+    	sessionFactory.openSession();
+    	return sessionFactory.getCurrentSession();		
+    	
     }
+    
+    public static void rebuildSessionFactory() {
+		try {
+			configuration.configure(configFile);
+			
+			sessionFactory = configuration.buildSessionFactory();
+		} catch (Exception e) {
+			System.err
+					.println("%%%% Error Creating SessionFactory %%%%");
+			e.printStackTrace();
+		}
+	}
 
 
 

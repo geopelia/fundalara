@@ -58,8 +58,18 @@ public class GenericDao {
 			return session = SessionManager.getSession();
 	}else{
 		  if(!session.isOpen())
-		      session = SessionManager.getSession();		    
-	      return session;	
+		      session = SessionManager.getSession().getSessionFactory().openSession();
+			  
+//		  try {
+//			  session = SessionManager.getSession().getSessionFactory().openSession();
+//			}
+//			catch(Throwable ex)
+//			{
+//				System.err.println("Initial SessionFactory creation failed." + ex);
+//	            throw new ExceptionInInitializerError(ex);
+//			}
+//	      	
+			  return session;
 		}
 	}
 	
