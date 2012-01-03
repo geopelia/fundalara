@@ -10,23 +10,7 @@
 ]]></zscript>
 		<zscript><![CDATA[
 	//@DECLARATION
-	public void mostrar() {
-		String var = cmbFormaPago.getSelectedItem().getValue().toString();
-		System.out.println(var);
-		if (var.equals("modelo.DatoBasico@2b6773ab") ) {
-			row1.setVisible(false);
-			row2.setVisible(false);
-
-		} else if (var.equals("modelo.DatoBasico@335b3e8c") || var.equals("modelo.DatoBasico@3c70cf37")) {
-			row1.setVisible(true);
-			row2.setVisible(true);
-
-		} else {
-			row1.setVisible(true);
-			row2.setVisible(false);
-
-		}
-	}
+	
 ]]></zscript>
 		<grid>
 			<rows>
@@ -85,7 +69,7 @@
 
 
 		<div align="left">
-			<panel collapsible="true" title="Dinero a Donar"
+			<panel collapsible="true" id="pnlDinero" title="Dinero a Donar"
 				open="false">
 				<panelchildren>
 					<div>
@@ -118,23 +102,18 @@
 													value="Monto de la donación">
 												</label>
 												<hbox>
-												<doublebox width="180px">
+												<doublebox id="dbmontoDonacion" width="180px">
 												</doublebox>
 												<label value="(*)"
 												style="color:red">
 												</label>
 												</hbox>
-												
-
-											</row>
-											<row style="border:none">
-
 												<label
 													value="Forma de Pago">
 												</label>
 												<hbox align="center">
 													<combobox id="cmbFormaPago" model="@{cntrl.lstFormaPago }"
-														value="Seleccione--" onSelect="mostrar()" width="160px">
+														value="Seleccione--"  width="160px">
 														<comboitem self="@{each='formaPago'}"
 														label="@{formaPago.nombre}" context="@{formaPago.nombre}" value="@{formaPago.id}">
 														</comboitem>
@@ -143,22 +122,41 @@
 														value="(*)" style="color:red">
 													</label>
 												</hbox>
-												<label
-													value="Monto Cancelado">
-												</label>
-												<textbox
-													width="180px">
-												</textbox>
-
 
 											</row>
+<!-- 											<row style="border:none"> -->
+
+<!-- 												<label -->
+<!-- 													value="Forma de Pago"> -->
+<!-- 												</label> -->
+<!-- 												<hbox align="center"> -->
+<!-- 													<combobox id="cmbFormaPago" model="@{cntrl.lstFormaPago }" -->
+<!-- 														value="Seleccione" onSelect="mostrar()" width="160px"> -->
+<!-- 														<comboitem self="@{each='formaPago'}" -->
+<!-- 														label="@{formaPago.nombre}" context="@{formaPago.nombre}" value="@{formaPago.id}"> -->
+<!-- 														</comboitem> -->
+<!-- 													</combobox> -->
+<!-- 													<label width="10px" -->
+<!-- 														value="(*)" style="color:red"> -->
+<!-- 													</label> -->
+<!-- 												</hbox> -->
+												
+<!-- 												<label -->
+<!-- 													value="Monto Cancelado"> -->
+<!-- 												</label> -->
+<!-- 												<textbox -->
+<!-- 													width="180px"> -->
+<!-- 												</textbox> -->
+
+
+<!-- 											</row> -->
 											<row style="border:none"
 												id="row1" visible="false">
 												<label
 													value="Nro. de Documento">
 												</label>
 
-												<textbox
+												<textbox id="txtNroDocumento"
 													width="180px">
 												</textbox>
 
@@ -170,21 +168,6 @@
 														label="@{banco.nombre}" 
 														context="@{banco.nombre}" value="@{banco.id}">
 														</comboitem>
-<!-- 													<comboitem -->
-<!-- 														label="Banesco"> -->
-<!-- 													</comboitem> -->
-<!-- 													<comboitem -->
-<!-- 														label="Mercantil"> -->
-<!-- 													</comboitem> -->
-<!-- 													<comboitem -->
-<!-- 														label="BOD"> -->
-<!-- 													</comboitem> -->
-<!-- 													<comboitem -->
-<!-- 														label="Provincial"> -->
-<!-- 													</comboitem> -->
-<!-- 													<comboitem -->
-<!-- 														label="Venezuela"> -->
-<!-- 													</comboitem> -->
 												</combobox>
 
 											</row>
@@ -193,17 +176,12 @@
 												<label
 													value="Tipo Tarjeta">
 												</label>
-												<combobox id="cmbTarjeta"
+												<combobox id="cmbTarjeta" model="@{cntrl.lstTarjeta}"
 													value="Seleccione--" width="170px">
-													<comboitem
-														label="Visa">
-													</comboitem>
-													<comboitem
-														label="MarterCard">
-													</comboitem>
-													<comboitem
-														label="American Express">
-													</comboitem>
+													<comboitem self="@{each='tarjeta'}"
+														label="@{tarjeta.nombre}" 
+														context="@{tarjeta.nombre}" value="@{tarjeta.id}">
+														</comboitem>
 												</combobox>
 											</row>
 										</rows>
@@ -220,7 +198,7 @@
 
 			</panel>
 		</div>
-		<panel collapsible="true" title="Materiales a Donar" open="false">
+		<panel collapsible="true" title="Materiales a Donar" id="pnlMateriales" open="false">
 			<panelchildren>
 				<hbox>
 					<grid>
@@ -229,7 +207,7 @@
 								<hbox height="30px" align="center">
 									<label value="Código del Material" />
 									<space width="5px" />
-									<textbox id="txtMaterial"
+									<textbox id="txtIdMaterial"
 										width="100px" height="20px" />
 									<button
 										image="/Recursos/Imagenes/consultar.ico" onClick=""
@@ -240,7 +218,7 @@
 									<space width="5px" />
 									<label value="Descripción" />
 									<space />
-									<textbox id="txtDescripcion"
+									<textbox id="txtDescMaterial"
 										width="140px" height="20px" />
 									<button
 										image="/Recursos/Imagenes/consultar.ico" onClick=""
@@ -250,7 +228,7 @@
 									</label>
 									<space width="5px" />
 									<label value="Cantidad" />
-									<intbox id="txtCantidad"
+									<intbox id="intCantMaterial"
 										width="50px">
 									</intbox>
 								</hbox>
@@ -267,7 +245,7 @@
 							<rows>
 								<row>
 									<hbox>
-										<listbox multiple="true" mold="paging"
+										<listbox  multiple="true" mold="paging"
 											pageSize="10" width="450px" height="100px" id="lbMateriales">
 											<listhead>
 											<listheader style="border:none" label="Item" width="50px"
@@ -295,13 +273,13 @@
 									
 									
 										<vbox height="50px">
-											<button
+											<button id="btnAgregarMaterial"
 												image="/Recursos/Imagenes/agregar.ico" />
 											<separator height="5px" />
-											<button
+											<button id="btnEditarMaterial"
 												image="/Recursos/Imagenes/editar.ico" />
 											<separator height="5px" />
-											<button
+											<button id="btnQuitarMaterial"
 												image="/Recursos/Imagenes/quitar.ico" />
 										</vbox>
 									</hbox>
@@ -319,14 +297,14 @@
 			<label value=" (*) Campo Obligatorio" style="color:red" />
 			</div>
 		<div align="right">
-			<button image="/Recursos/Imagenes/guardar.ico"
-					onClick="" label="Guardar" />
-			<button image="/Recursos/Imagenes/imprimir.ico" onClick=""
+			<button image="/Recursos/Imagenes/guardar.ico" id="btnGuardar"
+					 label="Guardar" />
+			<button image="/Recursos/Imagenes/imprimir.ico"  id="btnImprimir"
 				tooltiptext="Cancelar" label="Imprimir" />	
-			<button image="/Recursos/Imagenes/cancelar.ico"
-					onClick="" label="Cancelar" />
-			<button image="/Recursos/Imagenes/atras.ico"
-					onClick="donaciones.onClose()" label="Salir" />
+			<button image="/Recursos/Imagenes/cancelar.ico" id="btnCancelar"
+					 label="Cancelar" />
+			<button image="/Recursos/Imagenes/atras.ico" id="btnSalir"
+					 label="Salir" />
 		</div>
 	</window>
 </zk>
