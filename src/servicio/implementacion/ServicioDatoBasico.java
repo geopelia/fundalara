@@ -75,4 +75,10 @@ public class ServicioDatoBasico implements IServicioDatoBasico {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<DatoBasico> listarPorTipoDeDato(String e) {
+		// TODO Auto-generated method stub
+		return daoDatoBasico.listarPorTipoDeDato(e);
+	}
 }

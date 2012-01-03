@@ -15,6 +15,7 @@ public interface IServicioDatoBasico {
 	
 	public abstract List<DatoBasico> buscarPorTipoDato(TipoDato td);
 	
+	public abstract List<DatoBasico> listarPorTipoDeDato(String e);
 
 	public abstract DatoBasico buscarPorCodigo(Integer i);
 

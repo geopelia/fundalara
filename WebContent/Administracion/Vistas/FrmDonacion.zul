@@ -1,4 +1,6 @@
 <?page title="Donaciones" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="donaciones" ?>
 <zk>
 	<window id="donaciones" apply="controlador.administracion.CntrlDonacion" title="Donaciones" closable="true" border="normal"
 		width="690px">
@@ -10,16 +12,12 @@
 	//@DECLARATION
 	public void mostrar() {
 		String var = cmbFormaPago.getSelectedItem().getValue().toString();
-
-		if (var.equals("1")) {
+		System.out.println(var);
+		if (var.equals("modelo.DatoBasico@2b6773ab") ) {
 			row1.setVisible(false);
 			row2.setVisible(false);
 
-		} else if (var.equals("2")) {
-			row1.setVisible(true);
-			row2.setVisible(true);
-
-		} else if (var.equals("3")) {
+		} else if (var.equals("modelo.DatoBasico@335b3e8c") || var.equals("modelo.DatoBasico@3c70cf37")) {
 			row1.setVisible(true);
 			row2.setVisible(true);
 
@@ -135,22 +133,10 @@
 													value="Forma de Pago">
 												</label>
 												<hbox align="center">
-													<combobox id="cmbFormaPago"
+													<combobox id="cmbFormaPago" model="@{cntrl.lstFormaPago }"
 														value="Seleccione--" onSelect="mostrar()" width="160px">
-														<comboitem
-															value="1" label="Efectivo">
-														</comboitem>
-														<comboitem
-															value="2" label="Débito">
-														</comboitem>
-														<comboitem
-															value="3" label="Crédito">
-														</comboitem>
-														<comboitem
-															value="4" label="Transferencia">
-														</comboitem>
-														<comboitem
-															value="5" label="Cheque">
+														<comboitem self="@{each='formaPago'}"
+														label="@{formaPago.nombre}" context="@{formaPago.nombre}" value="@{formaPago.id}">
 														</comboitem>
 													</combobox>
 													<label width="10px"
@@ -178,23 +164,27 @@
 
 												<label value="Banco">
 												</label>
-												<combobox id="cmbBanco"
+												<combobox id="cmbBanco" model="@{cntrl.lstBanco}"
 													value="Seleccione--" width="150px">
-													<comboitem
-														label="Banesco">
-													</comboitem>
-													<comboitem
-														label="Mercantil">
-													</comboitem>
-													<comboitem
-														label="BOD">
-													</comboitem>
-													<comboitem
-														label="Provincial">
-													</comboitem>
-													<comboitem
-														label="Venezuela">
-													</comboitem>
+													    <comboitem self="@{each='banco'}"
+														label="@{banco.nombre}" 
+														context="@{banco.nombre}" value="@{banco.id}">
+														</comboitem>
+<!-- 													<comboitem -->
+<!-- 														label="Banesco"> -->
+<!-- 													</comboitem> -->
+<!-- 													<comboitem -->
+<!-- 														label="Mercantil"> -->
+<!-- 													</comboitem> -->
+<!-- 													<comboitem -->
+<!-- 														label="BOD"> -->
+<!-- 													</comboitem> -->
+<!-- 													<comboitem -->
+<!-- 														label="Provincial"> -->
+<!-- 													</comboitem> -->
+<!-- 													<comboitem -->
+<!-- 														label="Venezuela"> -->
+<!-- 													</comboitem> -->
 												</combobox>
 
 											</row>
