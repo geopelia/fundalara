@@ -1,9 +1,11 @@
 <?page title="Auto Generated index.zul"?>
 <div align="center">
 	<separator height="15px" />
-	<window closable="true" title="Datos Basicos" border="normal"
-		width="600px" height="" id="wndDatosBasicosNC"
-		apply="vista.general.Datos_Basicos_NC">
+<!-- 	<window closable="true" title="Datos Basicos" border="normal" -->
+<!-- 		width="600px" height="" id="wndDatosBasicosNC" -->
+<!-- 		apply="vista.general.Datos_Basicos_NC"> -->
+		<window closable="true" title="Datos Basicos" border="normal"
+		width="600px" height="" id="wndDatosBasicosNC">
 		<grid>
 			<rows>
 				<row>

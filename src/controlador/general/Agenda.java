@@ -30,7 +30,7 @@ public class Agenda extends GenericForwardComposer {
 	Calendars calendars;
 	Span FDOW;
 	String form;
-	Listbox filtro;
+	Listbox lsbxFiltro;
 	Listitem item;
 	/*
 	 * 0->Evento no registrado, 1->Evento pendiente, 2->Evento cancelado,
@@ -42,13 +42,35 @@ public class Agenda extends GenericForwardComposer {
 	public void doAfterCompose(Component component) throws Exception {
 		super.doAfterCompose(component);
 		actualizarRangoCalendario();
+		lsbxFiltro.setSelectedIndex(0);
 	}
 
-	public void onSelect$filtro(){
-		filtro.removeItemAt(item.getIndex());
-		if (filtro.getSelectedItem().getLabel().compareTo("Entrenamiento") == 0) {
+	public void onSelect$lsbxFiltro(){
+		//filtro.removeItemAt(item.getIndex());
+//		if (filtro.getSelectedItem().getLabel().compareTo("Entrenamiento") == 0) {
+//			calendars.setReadonly(false);
+//			form = "Entrenamiento/Vistas/Auxiliar_Agenda.zul";
+//		}
+
+		switch (lsbxFiltro.getSelectedIndex()){
+		
+		case 1:{ //Entrenamiento
 			calendars.setReadonly(false);
-			form = "Entrenamiento/Vistas/Auxiliar_Agenda.zul";
+			form = "Entrenamiento/Vistas/Auxiliar_Agenda.zul";	
+			break;
+		}
+		case 2:{ //Competencia
+			alert("Competencia");
+			break;
+		}	
+		case 3:{//mantenimiento
+			alert("Mantenimiento");
+			break;
+		}
+		case 4:{//Actividad Complementaria
+			alert("Actividad Complementaria");
+			break;
+		}
 		}
 	}
 
@@ -82,8 +104,14 @@ public class Agenda extends GenericForwardComposer {
 	public void cambiarFormatoCalendario(String vista){
 		if (vista.compareTo("Semana") == 0) {
 			calendars.setMold("default");
-		} else
+			calendars.setDays(7);
+		} else if (vista.compareTo("Dia") == 0){
+			calendars.setMold("default");
+			calendars.setDays(1);
+		} else{
 			calendars.setMold("month");
+		}
+		/*Esto todavia no se que es. Sino sirve, quitarse*/
 		FDOW.setVisible("month".equals(calendars.getMold())
 				|| calendars.getDays() == 7);
 	}

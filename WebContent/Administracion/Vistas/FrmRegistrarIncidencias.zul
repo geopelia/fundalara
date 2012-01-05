@@ -1,76 +1,73 @@
+<?page title="Registrar Incidencias" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="frmRegistrarIncidencias"?>
 <zk>
-	<window id="win" title="Registrar Incidencias " border="normal"
-		width="690px">
+	<window id="frmRegistrarIncidencias"
+		apply="controlador.administracion.CntrlRegistrarIncidencias"
+		title="Registrar Incidencias " border="normal" width="690px">
 		<groupbox closable="false" style="border-color:orange">
-			<caption>Datos Personales</caption>
-			<grid oddRowSclass="none" style="border:none;">
+			<caption label="Datos Personales"></caption>
+			<grid oddRowSclass="none" style="border:none;"
+				width="670px">
 				<columns>
-					<column label="" width="90px"></column>
-					<column label="" width="250px"></column>
-					<column label="" width="90px"></column>
-					<column label="" width="250px"></column>
+					<column width="110px"></column>
+					<column width="230px"></column>
+					<column width="110px"></column>
+					<column width="230px"></column>
 				</columns>
 				<rows>
-					<row height="30px" style="border:none;">
-						<label value="Cédula" />
+					<row style="border:none;">
+						<label value="Cédula" id="lblCedula" />
 						<hbox height="40px" align="center">
 							<combobox value="-" width="20px"
-								height="20px">
-								<comboitem label="V" />
-								<comboitem label="E" />
+								id="cmbNacionalidad" readonly="true">
+								<comboitem label="V-" value="V-" />
+								<comboitem label="E-" value="E-" />
 							</combobox>
 							<space></space>
-							<textbox width="120px" height="20px">
-							</textbox>
+							<intbox width="120px" id="txtCedula" constraint="no negative,no empty"/>
 							<space></space>
 							<button
-								image="/Recursos/Imagenes/consultar.ico">
+								image="/Recursos/Imagenes/consultar.ico" id="btnConsultar">
 							</button>
 						</hbox>
 					</row>
 
-					<row style="border:none;">
-						<label>Nombres</label>
-						<textbox width="230px" height="20px" />
-						<label>Apellidos</label>
-						<textbox width="230px" height="20px" />
+					<row style="border:none;" spans="1,3">
+						<label value="Nombre" id="lblNombre" />
+						<textbox width="310px" id="txtNombre"
+							readonly="true" />
 					</row>
-					<row spans="1,4" style="border:none;">
-						<label>Cargo</label>
-						<textbox width="230px" height="20px" />
-					</row>
-					<row style="border:none;">
-						<label>Desde</label>
-
-						<datebox width="100px" />
-						<label>Hasta</label>
-						<datebox width="100px" />
-
+					<row spans="1,3" style="border:none;">
+						<label value="Cargo" id="lblCargo" />
+						<textbox width="310px" id="txtCargo"
+							readonly="true" />
 					</row>
 				</rows>
 			</grid>
 		</groupbox>
+
 		<groupbox closable="false" style="border-color:orange">
-			<caption>Datos de Registro</caption>
-			<grid oddRowSclass="none" style="border:none;">
+			<caption label="Datos de Registro" />
+			<grid oddRowSclass="none" width="670px"
+				style="border:none;">
 				<columns>
-					<column width="80px"></column>
-					<column width="250px"></column>
-					<column width="90px"></column>
-					<column width="250px"></column>
+					<column width="110px"></column>
+					<column width="230px"></column>
+					<column width="110px"></column>
+					<column width="230px"></column>
 				</columns>
 				<rows>
-					<row style="border:none;">
-						<label>Incidencia</label>
+					<row style="border:none;" spans="1,3">
+						<label value="Concepto Afectado"
+							id="lblConcepto" />
 						<hbox align="center">
-							<combobox width="170px">
+							<combobox width="170px" id="cmbConcepto"
+								readonly="true" model="@{cntrl.listaConceptos }">
 								<comboitem
-									label="Inasistencia Justificada">
-								</comboitem>
-								<comboitem
-									label="Inasistencia no Justificada">
-								</comboitem>
-								<comboitem label="Trabajo Extra">
+									self="@{each='personalConceptoNomina'}"
+									label="@{personalConceptoNomina.conceptoNomina.descripcion}"
+									value="@{personalConceptoNomina.conceptoNomina}">
 								</comboitem>
 							</combobox>
 							<label style="color:red" Value="(*)">
@@ -78,128 +75,81 @@
 						</hbox>
 					</row>
 					<row style="border:none;">
-						<label>Fecha</label>
+						<label value="Fecha" id="lblFecha" />
 						<hbox align="center">
-							<datebox width="100px" height="20px" />
+							<datebox width="90px" id="dateFecha"
+								readonly="true" constraint="no empty, no future: now or never" />
 							<label style="color:red" Value="(*)">
 							</label>
 						</hbox>
-						<label>Horas Laborales</label>
-						<hbox align="center">
-							<textbox width="115px" height="20px" />
-							<label style="color:red" Value="(*)">
-							</label>
-						</hbox>
-					</row>
-
-					<row spans="1,3" style="border:none;">
-						<label>Observación</label>
-						<textbox width="560px" height="20px"></textbox>
 					</row>
 					<row style="border:none;">
-						<separator></separator>
+						<label value="Razón" id="lblRazon" />
+						<hbox align="center">
+							<combobox width="90px" id="cmbRazon"
+								readonly="true">
+								<comboitem label="Aumentar"
+									value="Positivo" />
+								<comboitem label="Disminuir"
+									value="Positivo" />
+							</combobox>
+							<label style="color:red" Value="(*)" />
+						</hbox>
+					</row>
+					<row style="border:none;">
+						<label value="Monto" id="lblMonto" />
+						<hbox align="center">
+							<doublebox width="90px" id="txtMonto" constraint="no negative,no zero" format="#,##0.##"/>
+							<label style="color:red" Value="(*)" />
+						</hbox>
+					</row>
+					<row spans="1,3" style="border:none;">
+						<label value="Observación" id="lblObservacion" />
+						<textbox width="89%" height="40px"
+							id="txtObservacion" constraint="no empty"/>
 					</row>
 					<row spans="4" style="border:none;">
 						<hbox>
-							<grid mold="paging" pageSize="5">
-								<columns>
-									<column width="8%">
-										<checkbox id="on"
-											onClick="setOn()">
-										</checkbox>
-									</column>
-									<column label="Incidencias"
-										width="35%">
-									</column>
-									<column label="Fecha" width="10%"
-										align="center">
-									</column>
-									<column label="Horas" width="10%"
-										align="center">
-									</column>
-									<column label="Observación"
-										width="40%" align="center">
-									</column>
-								</columns>
-								<rows>
-									<row height="25px">
-										<checkbox></checkbox>
-										<label>
-											Inasistencia Justificada
-										</label>
-										<label>21/09/2011</label>
-										<label>8</label>
-										<label>Enfermedad</label>
-									</row>
-									<row height="25px">
-										<checkbox></checkbox>
-										<label>Trabajo Extra</label>
-										<label>23/09/2011</label>
-										<label>3</label>
-										<label>Trabajo nocturno</label>
-									</row>
-									<row height="25px">
-										<label></label>
-										<label></label>
-										<label></label>
-										<label></label>
-										<label></label>
-									</row>
-									<row height="25px">
-										<label></label>
-										<label></label>
-										<label></label>
-										<label></label>
-										<label></label>
-									</row>
-									<row height="25px">
-										<label></label>
-										<label></label>
-										<label></label>
-										<label></label>
-										<label></label>
-									</row>
-									<row height="25px">
-										<label></label>
-										<label></label>
-										<label></label>
-										<label></label>
-										<label></label>
-									</row>
-									<row height="25px">
-										<label></label>
-										<label></label>
-										<label></label>
-										<label></label>
-										<label></label>
-									</row>
-								</rows>
-							</grid>
+							<space width="5px"></space>
+							<listbox height="150px" id="Incidencias"
+								width="600px" mold="paging"
+								pageSize="5" oddRowSclass="none">
+								<listhead>
+									<listheader
+										label="Concepto Nómina Afectado" width="35%" align="center" />
+									<listheader label="Fecha"
+										align="center" width="15%" />
+									<listheader label="Monto"
+										align="center" width="15%" />
+									<listheader label="Observación"
+										align="center" width="35%" />
+								</listhead>
+
+							</listbox>
 							<vbox>
 								<button
-									image="/Recursos/Imagenes/agregar.ico">
+									image="/Recursos/Imagenes/agregar.ico" id="btnAgregar">
 								</button>
 
 								<button
-									image="/Recursos/Imagenes/quitar.ico">
+									image="/Recursos/Imagenes/quitar.ico" id="btnQuitar">
 								</button>
 
 							</vbox>
 						</hbox>
 					</row>
-					<row style="border:none;">
-						<separator></separator>
-					</row>
 					<row align="right" spans="4" style="border:none;">
 						<hbox>
 							<button
-								image="/Recursos/Imagenes/aceptar.ico" label="Aceptar">
+								image="/Recursos/Imagenes/aceptar.ico" label="Aceptar"
+								id="btnAceptar">
 							</button>
 							<button
-								image="/Recursos/Imagenes/cancelar.ico" label="Cancelar">
+								image="/Recursos/Imagenes/cancelar.ico" label="Cancelar"
+								id="btnCancelar">
 								<attribute name="onClick">
 									<![CDATA[
-	win.detach();
+	frmRegistrarIncidencias.detach();
 ]]>
 									</attribute>
 							</button>

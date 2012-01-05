@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 18/12/2011 11:15:50 PM by Hibernate Tools 3.4.0.CR1
+// Generated 28/12/2011 03:24:38 PM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -11,33 +11,33 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class AfeccionJugadorId implements java.io.Serializable {
 
-	private String codigoAfeccion;
-	private String codigoRegistro;
+	private int codigoDatoMedico;
+	private int codigoAfeccion;
 
 	public AfeccionJugadorId() {
 	}
 
-	public AfeccionJugadorId(String codigoAfeccion, String codigoRegistro) {
+	public AfeccionJugadorId(int codigoDatoMedico, int codigoAfeccion) {
+		this.codigoDatoMedico = codigoDatoMedico;
 		this.codigoAfeccion = codigoAfeccion;
-		this.codigoRegistro = codigoRegistro;
+	}
+
+	@Column(name = "codigo_dato_medico", nullable = false)
+	public int getCodigoDatoMedico() {
+		return this.codigoDatoMedico;
+	}
+
+	public void setCodigoDatoMedico(int codigoDatoMedico) {
+		this.codigoDatoMedico = codigoDatoMedico;
 	}
 
 	@Column(name = "codigo_afeccion", nullable = false)
-	public String getCodigoAfeccion() {
+	public int getCodigoAfeccion() {
 		return this.codigoAfeccion;
 	}
 
-	public void setCodigoAfeccion(String codigoAfeccion) {
+	public void setCodigoAfeccion(int codigoAfeccion) {
 		this.codigoAfeccion = codigoAfeccion;
-	}
-
-	@Column(name = "codigo_registro", nullable = false)
-	public String getCodigoRegistro() {
-		return this.codigoRegistro;
-	}
-
-	public void setCodigoRegistro(String codigoRegistro) {
-		this.codigoRegistro = codigoRegistro;
 	}
 
 	public boolean equals(Object other) {
@@ -49,28 +49,15 @@ public class AfeccionJugadorId implements java.io.Serializable {
 			return false;
 		AfeccionJugadorId castOther = (AfeccionJugadorId) other;
 
-		return ((this.getCodigoAfeccion() == castOther.getCodigoAfeccion()) || (this
-				.getCodigoAfeccion() != null
-				&& castOther.getCodigoAfeccion() != null && this
-				.getCodigoAfeccion().equals(castOther.getCodigoAfeccion())))
-				&& ((this.getCodigoRegistro() == castOther.getCodigoRegistro()) || (this
-						.getCodigoRegistro() != null
-						&& castOther.getCodigoRegistro() != null && this
-						.getCodigoRegistro().equals(
-								castOther.getCodigoRegistro())));
+		return (this.getCodigoDatoMedico() == castOther.getCodigoDatoMedico())
+				&& (this.getCodigoAfeccion() == castOther.getCodigoAfeccion());
 	}
 
 	public int hashCode() {
 		int result = 17;
 
-		result = 37
-				* result
-				+ (getCodigoAfeccion() == null ? 0 : this.getCodigoAfeccion()
-						.hashCode());
-		result = 37
-				* result
-				+ (getCodigoRegistro() == null ? 0 : this.getCodigoRegistro()
-						.hashCode());
+		result = 37 * result + this.getCodigoDatoMedico();
+		result = 37 * result + this.getCodigoAfeccion();
 		return result;
 	}
 

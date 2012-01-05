@@ -33,10 +33,6 @@
 		}
 
 	}
-	void setOn1() {
-		ch1.setChecked(true);
-		ch2.setChecked(true);
-	}
 ]]></zscript>
 			<div align="left">
 				<panel collapsible="true" title="Datos Básicos"
@@ -234,125 +230,38 @@
 									<rows>
 										<row><hbox>
 
-						<grid mold="paging" pageSize="10"
-							width="575px">
-							<auxhead>
-								<auxheader align="center"
-									label="Forma de Pago" />
-								<auxheader align="center"
-									label="Tipo Tarjeta" />
-								<auxheader align="center" label="Monto Cancelado" />
-								<auxheader align="center" label="Banco" />
-								<auxheader align="center"
-									label="Nro Documento" />
-							</auxhead>
-							
-							<columns>
-								<column width="100px" align="center">
-									
-								</column>
-								<column width="130px" align="center">
-									
-								</column>
-								<column width="110px" align="center">
-									
-								</column>
-								<column width="80px" align="center">
-									
-								</column>
-								<column width="130px" align="center">
-									
-								</column>
-							</columns>
-							<rows>
-								<row style="border:none" height="25px">
-									<label value="Efectivo" />
-									<label value="N/A" />
-									<label value="1000 Bs" />
-									<label value="N/A"/>
-									<label value="N/A" />
-								</row>
-								<row style="border:none" height="25px">
-									<label value="Cheque" />
-									<label value="N/A"/>
-									<label value="520 Bs"/>
-									<label value="Mercantil" />
-									<label value="0256254848484" />
-								</row>
-								<row style="border:none" height="25px">
-									<label value="" />
-									<label />
-									<label />
-									<label />
-									<label />
-								</row>
-								<row style="border:none" height="25px">
-									<label value="" />
-									<label />
-									<label />
-									<label />
-									<label />
-								</row>
-								<row style="border:none" height="25px">
-									<label />
-									<label />
-									<label />
-									<label />
-									<label />
-								</row>
-								<row style="border:none" height="25px">
-									<label value="" />
-									<label />
-									<label />
-									<label />
-									<label />
-								</row>
-								<row style="border:none" height="25px">
-									<label />
-									<label />
-									<label />
-									<label />
-									<label />
-								</row>
-								<row style="border:none" height="25px">
-									<label value="" />
-									<label />
-									<label />
-									<label />
-									<label />
-								</row>
-								<row height="25px" style="border:none">
-									<label />
-									<label />
-									<label />
-									<label />
-									<label />
-								</row>
-								<row height="25px" style="border:none">
-									<label value="" />
-									<label />
-									<label />
-									<label />
-									<label />
-								</row>
-								<row height="25px" style="border:none">
+						<listbox multiple="true" mold="paging"
+							pageSize="10" width="575px" height="100px"  id="lbPagos">
+							<listhead>
+								<listheader style="border:none" label="Forma de Pago" width="100px"
+									align="center" />
+								<listheader style="border:none" label="Tipo Tarjeta" width="130px"
+									align="center" />
+								<listheader style="border:none" label="Monto Cancelado" width="110px"
+									align="center" />
+								<listheader style="border:none" label="Banco" width="80px"
+									align="center" />
+								<listheader style="border:none" label="Nro Documento"
+									width="130px" align="center" />
+							</listhead>
 
-									<label />
-									<label />
-									<label />
-									<label />
-									<label />
-								</row>
-								<row height="25px" style="border:none">
-									<label />
-									<label />
-									<label />
-									<label />
-									<label />
-								</row>
-							</rows>
-						</grid>
-
+							<listitem>
+								<listcell label="Efectivo" />
+								<listcell label="N/A" />
+								<listcell label="1000 Bs" />
+								<listcell label="N/A"/>
+								<listcell label="N/A" />
+							</listitem>
+							<listitem>
+								<listcell label="Cheque" />
+								<listcell label="N/A"/>
+								<listcell label="520 Bs"/>
+								<listcell label="Mercantil" />
+								<listcell label="0256254848484" />
+							</listitem>
+						</listbox>
+						
+						
 						<vbox height="50px">							
 							<button
 								image="/Recursos/Imagenes/agregar.ico" />

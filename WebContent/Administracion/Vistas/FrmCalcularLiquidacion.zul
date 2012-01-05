@@ -15,7 +15,7 @@
 	public void doLogin() {
 		Window window = (Window) Executions.createComponents(
 				"ObservacionOrdenCompra.zul", null, null);
-		Observacion.doModal();
+		//Observacion.doModal();
 		//loginDiv.setVisible(false);"ConsulViaticos.zul"
 		//click.setVisible(false);
 	}
@@ -41,13 +41,7 @@
 		}
 
 	}
-	void setOn1() {
-		c1.setChecked(true);
-		c2.setChecked(true);
-		c3.setChecked(true);
-		c4.setChecked(true);
-		c5.setChecked(true);
-	}
+	
 ]]></zscript>
 
 <zscript><![CDATA[//@DECLARATION 
@@ -62,7 +56,7 @@
 						<textbox id="txtCedula" width="130px"
 							height="20px" />
 						<button image="/Recursos/Imagenes/consultar.ico" onClick=""
-					tooltiptext="Aceptar" label="" />
+					tooltiptext="Consultar" label="" />
 						<label value="(*)" style="color:red">	</label>	
 						<space width="20px" />
 						<label value="Nombre" />
@@ -70,7 +64,7 @@
 						<textbox id="txtNombre" width="240px"
 							height="20px" />
 						<button image="/Recursos/Imagenes/consultar.ico" onClick=""
-				tooltiptext="Aceptar" label="" />	
+				tooltiptext="Consultar" label="" />	
 						<label value="(*)" style="color:red">	</label>
 					</hbox>
 				
@@ -121,8 +115,7 @@
 						<row>
 
 							<groupbox mold="3d" closable="false"
-								style="padding: 10px;" width="390
-		">
+								style="padding: 10px;" width="390">
 
 								<div>
 									<grid>
