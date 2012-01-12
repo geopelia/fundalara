@@ -1,0 +1,96 @@
+<?page title="Consultas Dinamicas" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Consultas Dinamicas" width="690px" closable="true" id="winConsultasDinamicas" border="normal"
+apply="controlador.administracion.CntrlConsultasDinamicas">
+	
+	<panel collapsible="true" title="Tipo Reporte"
+			open="true" style="border:orange">
+		<panelchildren>
+			<combobox id="cmbTipoReporte" width="180px"
+			readonly="true" value="--Seleccione--">
+				<comboitem label="Compras" value="1"></comboitem>
+			</combobox>
+		</panelchildren>
+	</panel>
+	
+	<panel collapsible="true" title="Filtros"
+		open="true" style="border:orange">
+			<panelchildren>
+				<grid id="gridFiltros" oddRowSclass="none">
+					<columns>
+						<column label="" width="180px"></column>
+						<column label="" width="140px"></column>
+						<column label="" width="180px"></column>
+						<column label="" width="140px"></column>
+					</columns>
+					<rows>
+						<row style="border:none">
+							<hbox>
+								<checkbox id="cb1" ></checkbox>
+								<label>Fecha Inicio</label>
+								
+							</hbox>
+							<datebox id="dtInicio" width="140px"
+											 format="dd/MM/yyyy">
+							</datebox>
+						
+							<hbox>
+								<space width="20px"></space>
+								<checkbox id="cb2" ></checkbox>
+								<label>Fecha Final</label>
+							</hbox>
+							<datebox id="dtFin" width="140px"
+											 format="dd/MM/yyyy">
+							</datebox>
+						</row>
+						<row style="border:none">
+							<hbox>
+								<checkbox id="cb3" ></checkbox>
+								<label>Estado</label>
+							</hbox>
+							<combobox id="cmbEstado" width="140px"
+								readonly="true" value="--Seleccione--">
+								<comboitem label="Cancelado" value="C"></comboitem>
+								<comboitem label="Eliminado" value="C"></comboitem>
+								<comboitem label="Pendiente" value="P"></comboitem>
+							</combobox>
+							<hbox>
+								<space width="20px"></space>
+								<button id="btnBuscarFact"
+									image="/Recursos/Imagenes/consultar.ico"
+									tooltiptext="Validar Factura" />
+							</hbox>				
+						</row>
+					</rows>
+				</grid>
+			</panelchildren>
+	</panel>
+	<panel collapsible="true" title="Resultados"
+		open="true" style="border:orange">
+			<panelchildren>
+				<listbox height="100px" id="lstReporte" width="650px">
+					<listhead sizable="true">
+						<listheader label="Código Factura" sort="auto"></listheader>
+						<listheader label="Concepto"></listheader>
+						<listheader label="Monto Total"></listheader>
+						<listheader label="Estado"></listheader>
+					</listhead>
+					
+				</listbox>			
+			</panelchildren>
+	</panel>
+	<div align="right">
+						<button id="btnExportar"
+							image="/Recursos/Imagenes/imprimir.ico" onClick="" label="Exportar" />
+						
+						<button image="/Recursos/Imagenes/cancelar.ico"
+							id="btnCancelar3" label="Cancelar" />
+						<button image="/Recursos/Imagenes/salir.png"
+							id="btnSalir" tooltiptext="Salir" label="Salir">
+
+						</button>
+	</div>
+	                   
+
+</window>
+</zk>
