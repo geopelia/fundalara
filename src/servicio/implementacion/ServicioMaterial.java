@@ -50,6 +50,12 @@ public class ServicioMaterial implements IServicioMaterial {
 		return 0;
 	}
 
+	@Override
+	public List<Material> listarMateriales() {
+		// TODO Auto-generated method stub
+		return daoMaterial.listarMateriales();
+	}
+
 
 //	@Override
 //	public Material buscarPorCodigo(int cod) {

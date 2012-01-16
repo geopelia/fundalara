@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 28/12/2011 03:24:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated 09/01/2012 10:28:45 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -31,6 +31,8 @@ public class DocumentoEntregado implements java.io.Serializable {
 	private char estatus;
 	private Set<DocumentoAcademico> documentoAcademicos = new HashSet<DocumentoAcademico>(
 			0);
+	private Set<DocumentoPersonal> documentoPersonals = new HashSet<DocumentoPersonal>(
+			0);
 	private Set<DocumentoAscenso> documentoAscensos = new HashSet<DocumentoAscenso>(
 			0);
 	private Set<DocumentoConducta> documentoConductas = new HashSet<DocumentoConducta>(
@@ -56,6 +58,7 @@ public class DocumentoEntregado implements java.io.Serializable {
 			RecaudoPorProceso recaudoPorProceso, byte[] documento,
 			int cantidad, Date fecha, char estatus,
 			Set<DocumentoAcademico> documentoAcademicos,
+			Set<DocumentoPersonal> documentoPersonals,
 			Set<DocumentoAscenso> documentoAscensos,
 			Set<DocumentoConducta> documentoConductas,
 			Set<DocumentoMedico> documentoMedicos) {
@@ -66,6 +69,7 @@ public class DocumentoEntregado implements java.io.Serializable {
 		this.fecha = fecha;
 		this.estatus = estatus;
 		this.documentoAcademicos = documentoAcademicos;
+		this.documentoPersonals = documentoPersonals;
 		this.documentoAscensos = documentoAscensos;
 		this.documentoConductas = documentoConductas;
 		this.documentoMedicos = documentoMedicos;
@@ -136,6 +140,15 @@ public class DocumentoEntregado implements java.io.Serializable {
 	public void setDocumentoAcademicos(
 			Set<DocumentoAcademico> documentoAcademicos) {
 		this.documentoAcademicos = documentoAcademicos;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "documentoEntregado")
+	public Set<DocumentoPersonal> getDocumentoPersonals() {
+		return this.documentoPersonals;
+	}
+
+	public void setDocumentoPersonals(Set<DocumentoPersonal> documentoPersonals) {
+		this.documentoPersonals = documentoPersonals;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "documentoEntregado")

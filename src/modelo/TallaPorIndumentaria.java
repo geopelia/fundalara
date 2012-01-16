@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 28/12/2011 03:24:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated 09/01/2012 10:28:45 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,8 +21,7 @@ import javax.persistence.Table;
 public class TallaPorIndumentaria implements java.io.Serializable {
 
 	private int codigoTallaIndumentaria;
-	private DatoBasico datoBasicoByCodigoTalla;
-	private DatoBasico datoBasicoByCodigoIndumentaria;
+	private DatoBasico datoBasico;
 	private float precio;
 	private char estatus;
 	private Set<DocumentoIndumentaria> documentoIndumentarias = new HashSet<DocumentoIndumentaria>(
@@ -34,24 +33,19 @@ public class TallaPorIndumentaria implements java.io.Serializable {
 	}
 
 	public TallaPorIndumentaria(int codigoTallaIndumentaria,
-			DatoBasico datoBasicoByCodigoTalla,
-			DatoBasico datoBasicoByCodigoIndumentaria, float precio,
-			char estatus) {
+			DatoBasico datoBasico, float precio, char estatus) {
 		this.codigoTallaIndumentaria = codigoTallaIndumentaria;
-		this.datoBasicoByCodigoTalla = datoBasicoByCodigoTalla;
-		this.datoBasicoByCodigoIndumentaria = datoBasicoByCodigoIndumentaria;
+		this.datoBasico = datoBasico;
 		this.precio = precio;
 		this.estatus = estatus;
 	}
 
 	public TallaPorIndumentaria(int codigoTallaIndumentaria,
-			DatoBasico datoBasicoByCodigoTalla,
-			DatoBasico datoBasicoByCodigoIndumentaria, float precio,
-			char estatus, Set<DocumentoIndumentaria> documentoIndumentarias,
+			DatoBasico datoBasico, float precio, char estatus,
+			Set<DocumentoIndumentaria> documentoIndumentarias,
 			Set<TallaPorJugador> tallaPorJugadors) {
 		this.codigoTallaIndumentaria = codigoTallaIndumentaria;
-		this.datoBasicoByCodigoTalla = datoBasicoByCodigoTalla;
-		this.datoBasicoByCodigoIndumentaria = datoBasicoByCodigoIndumentaria;
+		this.datoBasico = datoBasico;
 		this.precio = precio;
 		this.estatus = estatus;
 		this.documentoIndumentarias = documentoIndumentarias;
@@ -70,23 +64,12 @@ public class TallaPorIndumentaria implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_talla", nullable = false)
-	public DatoBasico getDatoBasicoByCodigoTalla() {
-		return this.datoBasicoByCodigoTalla;
+	public DatoBasico getDatoBasico() {
+		return this.datoBasico;
 	}
 
-	public void setDatoBasicoByCodigoTalla(DatoBasico datoBasicoByCodigoTalla) {
-		this.datoBasicoByCodigoTalla = datoBasicoByCodigoTalla;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "codigo_indumentaria", nullable = false)
-	public DatoBasico getDatoBasicoByCodigoIndumentaria() {
-		return this.datoBasicoByCodigoIndumentaria;
-	}
-
-	public void setDatoBasicoByCodigoIndumentaria(
-			DatoBasico datoBasicoByCodigoIndumentaria) {
-		this.datoBasicoByCodigoIndumentaria = datoBasicoByCodigoIndumentaria;
+	public void setDatoBasico(DatoBasico datoBasico) {
+		this.datoBasico = datoBasico;
 	}
 
 	@Column(name = "precio", nullable = false, precision = 8, scale = 8)

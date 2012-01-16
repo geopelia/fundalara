@@ -2,8 +2,11 @@ package servicio.implementacion;
 
 import java.util.List;
 
+import org.hibernate.criterion.Restrictions;
+
 import dao.general.DaoPersona;
 
+import modelo.DatoBasico;
 import modelo.Nomina;
 import modelo.Persona;
 import servicio.interfaz.IServicioPersona;
@@ -48,12 +51,23 @@ public class ServicioPersona implements IServicioPersona {
 
 	@Override
 	public Persona buscarPorCodigo (Persona d) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return (Persona) daoPersona.getSession().createCriteria(Persona.class).add(Restrictions.eq("cedula",d)).add(Restrictions.eq("estatus", "A")).list().get(0);
+		}
 	
-	public Persona buscarPorCedulaRif(String s) {
-		return daoPersona.buscarByCedulaRif(s);
+	public Persona buscarByCedulaRif(String d){
+		return (Persona) daoPersona.buscarByCedulaRif(d);
+	}
+
+	@Override
+	public List<Persona> listarPersonas(String d) {
+		// TODO Auto-generated method stub
+		return daoPersona.listarPersonas(d);
+	}
+
+	@Override
+	public List<Persona> listarProveedoresMateriales(DatoBasico d) {
+		// TODO Auto-generated method stub
+		return daoPersona.listarProveedoresMateriales(d);
 	}
 
 }

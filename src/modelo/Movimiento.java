@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 28/12/2011 03:24:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated 09/01/2012 10:28:45 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -28,13 +28,16 @@ public class Movimiento implements java.io.Serializable {
 	private Date fecha;
 	private byte[] justificacionInasistencia;
 	private char estatus;
+	private int cantidadHoraDia;
+	private String observacion;
+	private boolean fijo;
 
 	public Movimiento() {
 	}
 
 	public Movimiento(int codigoMovimiento, ConceptoNomina conceptoNomina,
 			Personal personal, Nomina nomina, double monto, Date fecha,
-			char estatus) {
+			char estatus, int cantidadHoraDia, boolean fijo) {
 		this.codigoMovimiento = codigoMovimiento;
 		this.conceptoNomina = conceptoNomina;
 		this.personal = personal;
@@ -42,11 +45,14 @@ public class Movimiento implements java.io.Serializable {
 		this.monto = monto;
 		this.fecha = fecha;
 		this.estatus = estatus;
+		this.cantidadHoraDia = cantidadHoraDia;
+		this.fijo = fijo;
 	}
 
 	public Movimiento(int codigoMovimiento, ConceptoNomina conceptoNomina,
 			Personal personal, Nomina nomina, double monto, Date fecha,
-			byte[] justificacionInasistencia, char estatus) {
+			byte[] justificacionInasistencia, char estatus,
+			int cantidadHoraDia, String observacion, boolean fijo) {
 		this.codigoMovimiento = codigoMovimiento;
 		this.conceptoNomina = conceptoNomina;
 		this.personal = personal;
@@ -55,6 +61,9 @@ public class Movimiento implements java.io.Serializable {
 		this.fecha = fecha;
 		this.justificacionInasistencia = justificacionInasistencia;
 		this.estatus = estatus;
+		this.cantidadHoraDia = cantidadHoraDia;
+		this.observacion = observacion;
+		this.fijo = fijo;
 	}
 
 	@Id
@@ -132,6 +141,33 @@ public class Movimiento implements java.io.Serializable {
 
 	public void setEstatus(char estatus) {
 		this.estatus = estatus;
+	}
+
+	@Column(name = "cantidad_hora_dia", nullable = false)
+	public int getCantidadHoraDia() {
+		return this.cantidadHoraDia;
+	}
+
+	public void setCantidadHoraDia(int cantidadHoraDia) {
+		this.cantidadHoraDia = cantidadHoraDia;
+	}
+
+	@Column(name = "observacion")
+	public String getObservacion() {
+		return this.observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+	@Column(name = "fijo", nullable = false)
+	public boolean isFijo() {
+		return this.fijo;
+	}
+
+	public void setFijo(boolean fijo) {
+		this.fijo = fijo;
 	}
 
 }

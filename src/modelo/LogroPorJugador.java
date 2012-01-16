@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 28/12/2011 03:24:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated 09/01/2012 10:28:45 AM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -27,6 +27,14 @@ public class LogroPorJugador implements java.io.Serializable {
 	private char estatus;
 
 	public LogroPorJugador() {
+	}
+
+	public LogroPorJugador(LogroPorJugadorId id, DatoDeportivo datoDeportivo,
+			DatoBasico datoBasico, char estatus) {
+		this.id = id;
+		this.datoDeportivo = datoDeportivo;
+		this.datoBasico = datoBasico;
+		this.estatus = estatus;
 	}
 
 	public LogroPorJugador(LogroPorJugadorId id, DatoDeportivo datoDeportivo,
@@ -73,7 +81,7 @@ public class LogroPorJugador implements java.io.Serializable {
 		this.datoBasico = datoBasico;
 	}
 
-	@Column(name = "observacion", nullable = false)
+	@Column(name = "observacion")
 	public String getObservacion() {
 		return this.observacion;
 	}

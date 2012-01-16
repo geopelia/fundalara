@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 28/12/2011 03:24:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated 09/01/2012 10:28:45 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table(name = "comision_equipo", schema = "public")
 public class ComisionEquipo implements java.io.Serializable {
 
-	private int estatus;
+	private int codigoComisionEquipo;
 	private DatoBasico datoBasico;
 	private Equipo equipo;
 	private int maximoComision;
@@ -32,9 +32,10 @@ public class ComisionEquipo implements java.io.Serializable {
 	public ComisionEquipo() {
 	}
 
-	public ComisionEquipo(int estatus, DatoBasico datoBasico, Equipo equipo,
-			int maximoComision, int cantidadComision, char estatus1) {
-		this.estatus = estatus;
+	public ComisionEquipo(int codigoComisionEquipo, DatoBasico datoBasico,
+			Equipo equipo, int maximoComision, int cantidadComision,
+			char estatus1) {
+		this.codigoComisionEquipo = codigoComisionEquipo;
 		this.datoBasico = datoBasico;
 		this.equipo = equipo;
 		this.maximoComision = maximoComision;
@@ -42,10 +43,10 @@ public class ComisionEquipo implements java.io.Serializable {
 		this.estatus1 = estatus1;
 	}
 
-	public ComisionEquipo(int estatus, DatoBasico datoBasico, Equipo equipo,
-			int maximoComision, int cantidadComision, char estatus1,
-			Set<FamiliarComisionEquipo> familiarComisionEquipos) {
-		this.estatus = estatus;
+	public ComisionEquipo(int codigoComisionEquipo, DatoBasico datoBasico,
+			Equipo equipo, int maximoComision, int cantidadComision,
+			char estatus1, Set<FamiliarComisionEquipo> familiarComisionEquipos) {
+		this.codigoComisionEquipo = codigoComisionEquipo;
 		this.datoBasico = datoBasico;
 		this.equipo = equipo;
 		this.maximoComision = maximoComision;
@@ -55,13 +56,13 @@ public class ComisionEquipo implements java.io.Serializable {
 	}
 
 	@Id
-	@Column(name = "estatus", unique = true, nullable = false)
-	public int getEstatus() {
-		return this.estatus;
+	@Column(name = "codigo_comision_equipo", unique = true, nullable = false)
+	public int getCodigoComisionEquipo() {
+		return this.codigoComisionEquipo;
 	}
 
-	public void setEstatus(int estatus) {
-		this.estatus = estatus;
+	public void setCodigoComisionEquipo(int codigoComisionEquipo) {
+		this.codigoComisionEquipo = codigoComisionEquipo;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

@@ -46,12 +46,12 @@ public class DaoDatoBasico extends GenericDao {
 		return lista;
 	}
 	
-	public DatoBasico buscarPorCodigo(Integer i) {
+	public DatoBasico buscarPorCodigo(Integer td) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		Transaction tx = session.beginTransaction();
+		Transaction tx =  session.beginTransaction();
 		Criteria c = getSession().createCriteria(DatoBasico.class);
-		c.add(Restrictions.eq("codigoDatoBasico", i));
+		c.add(Restrictions.eq("codigoDatoBasico", td));
 		return (DatoBasico) c.list().get(0);
 	}
 	
@@ -64,16 +64,5 @@ public class DaoDatoBasico extends GenericDao {
 		return (DatoBasico) c.list().get(0);
 	}
 	
-
-	public List<DatoBasico> listarParroquias(){
-		  
-		  Session session = getSession();
-		  Transaction tx = session.beginTransaction();
-		  Criteria c = session.createCriteria(TipoDato.class);
-		  TipoDato td =  (TipoDato) c.add(Restrictions.eq("nombre", "parroquia")).list().get(0);
-          c = session.createCriteria(DatoBasico.class);
-          List list = c.add(Restrictions.eq("tipoDato",td)).list();
-          return list;
-		  
-	  }
+	
 }

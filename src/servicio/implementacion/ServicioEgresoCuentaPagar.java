@@ -4,8 +4,11 @@ import java.util.List;
 
 import dao.general.DaoEgresoCuentaPagar;
 
+import modelo.CuentaPagar;
+import modelo.DatoBasico;
 import modelo.Egreso;
 import modelo.EgresoCuentaPagar;
+import modelo.TipoDato;
 import servicio.interfaz.IServicioEgresoCuentaPagar;
 
 public class ServicioEgresoCuentaPagar implements IServicioEgresoCuentaPagar {
@@ -46,7 +49,11 @@ public class ServicioEgresoCuentaPagar implements IServicioEgresoCuentaPagar {
 	public List<EgresoCuentaPagar> listarActivos() {
 		return daoEgresoCuentaPagar.listarActivos(EgresoCuentaPagar.class);
 	}
-
+	@Override
+	public List<EgresoCuentaPagar> listarPorOrigen(CuentaPagar td) {
+		// TODO Auto-generated method stub
+		return daoEgresoCuentaPagar.listarPorOrigen(td);
+	}
 	@Override
 	public EgresoCuentaPagar buscarPorCodigo (EgresoCuentaPagar d) {
 		// TODO Auto-generated method stub

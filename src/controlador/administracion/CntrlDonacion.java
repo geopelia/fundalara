@@ -48,9 +48,9 @@ public class CntrlDonacion extends GenericForwardComposer {
 		super.doAfterCompose(comp);
 		comp.setVariable("cntrl", this, true);
 		this.donaciones = comp;
-		lstFormaPago = (List<DatoBasico>) servicioDatoBasico.listarPorTipoDeDato("FORMA DE PAGO");
-		lstBanco = servicioDatoBasico.listarPorTipoDeDato("ENTIDAD BANCARIA");
-		lstTarjeta = servicioDatoBasico.listarPorTipoDeDato("TARJETA CREDITO");
+		lstFormaPago = (List<DatoBasico>) servicioDatoBasico.listarPorTipoDato("FORMA DE PAGO");
+		lstBanco = servicioDatoBasico.listarPorTipoDato("ENTIDAD BANCARIA");
+		lstTarjeta = servicioDatoBasico.listarPorTipoDato("TARJETA CREDITO");
 		
 	}
 	

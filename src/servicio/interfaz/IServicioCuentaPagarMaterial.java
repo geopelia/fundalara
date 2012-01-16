@@ -17,6 +17,8 @@ public interface IServicioCuentaPagarMaterial {
 	
 	public abstract List<CuentaPagarMaterial> listarActivos();
 	
+	public abstract List<CuentaPagarMaterial> listarMaterialesCP(String nf);
+	
 	public abstract  CuentaPagarMaterial buscarPorCodigo (CuentaPagarMaterial d);
 
 }

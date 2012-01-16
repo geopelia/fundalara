@@ -15,6 +15,7 @@ public interface IServicioMaterial {
 	public abstract List<Material> listar();
 	
 	public abstract List<Material> listarActivos();
+	public abstract List<Material> listarMateriales();
 	
 //	public Material buscarPorCodigo(int cod);
 	

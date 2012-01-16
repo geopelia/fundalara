@@ -1,17 +1,19 @@
 <?page title="Consultas Dinamicas" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winReportesCompras"?>
 <zk>
-<window title="Consultas Dinamicas" width="690px" closable="true" id="winConsultasDinamicas" border="normal"
-apply="controlador.administracion.CntrlConsultasDinamicas">
+<window title="Reporte de Compras" width="690px" closable="true" id="winReportesCompras" border="normal"
+apply="controlador.administracion.CntrlReportesCompras">
 	
-	<panel collapsible="true" title="Tipo Reporte"
-			open="true" style="border:orange">
-		<panelchildren>
-			<combobox id="cmbTipoReporte" width="180px"
-			readonly="true" value="--Seleccione--">
-				<comboitem label="Compras" value="1"></comboitem>
-			</combobox>
-		</panelchildren>
-	</panel>
+<!-- 	<panel collapsible="true" title="Tipo Reporte" -->
+<!-- 			open="true" style="border:orange"> -->
+<!-- 		<panelchildren> -->
+<!-- 			<combobox id="cmbTipoReporte" width="180px" -->
+<!-- 			readonly="true" value="Seleccione"> -->
+<!-- 				<comboitem label="Compras" value="1"></comboitem> -->
+<!-- 			</combobox> -->
+<!-- 		</panelchildren> -->
+<!-- 	</panel> -->
 	
 	<panel collapsible="true" title="Filtros"
 		open="true" style="border:orange">
@@ -25,18 +27,18 @@ apply="controlador.administracion.CntrlConsultasDinamicas">
 					</columns>
 					<rows>
 						<row style="border:none">
-							<hbox>
-								<checkbox id="cb1" ></checkbox>
+							
+								
 								<label>Fecha Inicio</label>
 								
-							</hbox>
+							
 							<datebox id="dtInicio" width="140px"
 											 format="dd/MM/yyyy">
 							</datebox>
 						
 							<hbox>
 								<space width="20px"></space>
-								<checkbox id="cb2" ></checkbox>
+								
 								<label>Fecha Final</label>
 							</hbox>
 							<datebox id="dtFin" width="140px"
@@ -44,14 +46,14 @@ apply="controlador.administracion.CntrlConsultasDinamicas">
 							</datebox>
 						</row>
 						<row style="border:none">
-							<hbox>
-								<checkbox id="cb3" ></checkbox>
+							
+								
 								<label>Estado</label>
-							</hbox>
+
 							<combobox id="cmbEstado" width="140px"
 								readonly="true" value="--Seleccione--">
 								<comboitem label="Cancelado" value="C"></comboitem>
-								<comboitem label="Eliminado" value="C"></comboitem>
+								<comboitem label="Eliminado" value="E"></comboitem>
 								<comboitem label="Pendiente" value="P"></comboitem>
 							</combobox>
 							<hbox>
@@ -68,15 +70,27 @@ apply="controlador.administracion.CntrlConsultasDinamicas">
 	<panel collapsible="true" title="Resultados"
 		open="true" style="border:orange">
 			<panelchildren>
-				<listbox height="100px" id="lstReporte" width="650px">
-					<listhead sizable="true">
-						<listheader label="Código Factura" sort="auto"></listheader>
-						<listheader label="Concepto"></listheader>
-						<listheader label="Monto Total"></listheader>
-						<listheader label="Estado"></listheader>
+				<listbox height="100px" id="lbxReporte" width="650px" 
+				mold="paging" pageSize="5"  model="@{cntrl.lstFacturas}">
+					<listhead  >
+						<listheader label="Código Factura" width="90px" sort="auto"></listheader>
+						<listheader label="Concepto" width="180px" ></listheader>
+						<listheader label="Nombre Proveedor" width="200px" sort="auto"></listheader>
+						<listheader label="Monto Total" width="90px" sort="auto"></listheader>
+						<listheader label="Fecha Emisión" width="90px" sort="auto"></listheader>
+						
 					</listhead>
+					<listitem self="@{each='cuentaPagar'}">
+						<listcell label="@{cuentaPagar.origen}" />
+						<listcell label="@{cuentaPagar.concepto}" />
+						<listcell label="@{cuentaPagar.persona.personaJuridica.razonSocial }" />
+						<listcell label="@{cuentaPagar.montoTotal}" />
+						<listcell label="@{cuentaPagar.fechaEmision, converter='comun.converter.DateConverter'}" />
+						
+					</listitem>
 					
-				</listbox>			
+				</listbox>
+				<iframe id="frame" height="5px"></iframe>			
 			</panelchildren>
 	</panel>
 	<div align="right">
@@ -84,7 +98,7 @@ apply="controlador.administracion.CntrlConsultasDinamicas">
 							image="/Recursos/Imagenes/imprimir.ico" onClick="" label="Exportar" />
 						
 						<button image="/Recursos/Imagenes/cancelar.ico"
-							id="btnCancelar3" label="Cancelar" />
+							id="btnCancelar" label="Cancelar" />
 						<button image="/Recursos/Imagenes/salir.png"
 							id="btnSalir" tooltiptext="Salir" label="Salir">
 

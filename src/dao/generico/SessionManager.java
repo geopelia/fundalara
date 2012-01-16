@@ -84,6 +84,7 @@ public class SessionManager implements Filter
     {   
 //    	try {
     		sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+    		//AnnotationConfiguration().configure().buildSessionFactory();
 //            
 //    	} catch (Exception e) {
 //			// TODO: handle exception
@@ -91,7 +92,7 @@ public class SessionManager implements Filter
 //		}
     	//return sessionFactory.getCurrentSession();
     	
-			rebuildSessionFactory();
+			//rebuildSessionFactory();
 		
     	sessionFactory.openSession();
     	return sessionFactory.getCurrentSession();		

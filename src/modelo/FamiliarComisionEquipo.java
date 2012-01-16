@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 28/12/2011 03:24:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated 09/01/2012 10:28:45 AM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -22,24 +22,24 @@ public class FamiliarComisionEquipo implements java.io.Serializable {
 	private FamiliarComisionEquipoId id;
 	private FamiliarJugador familiarJugador;
 	private ComisionEquipo comisionEquipo;
-	private char estatus1;
+	private char estatus;
 
 	public FamiliarComisionEquipo() {
 	}
 
 	public FamiliarComisionEquipo(FamiliarComisionEquipoId id,
 			FamiliarJugador familiarJugador, ComisionEquipo comisionEquipo,
-			char estatus1) {
+			char estatus) {
 		this.id = id;
 		this.familiarJugador = familiarJugador;
 		this.comisionEquipo = comisionEquipo;
-		this.estatus1 = estatus1;
+		this.estatus = estatus;
 	}
 
 	@EmbeddedId
 	@AttributeOverrides({
-			@AttributeOverride(name = "codigoFamiliarJugador", column = @Column(name = "codigo_familiar_jugador", nullable = false)),
-			@AttributeOverride(name = "estatus", column = @Column(name = "estatus", nullable = false)) })
+			@AttributeOverride(name = "codigoComisionEquipo", column = @Column(name = "codigo_comision_equipo", nullable = false)),
+			@AttributeOverride(name = "codigoFamiliarJugador", column = @Column(name = "codigo_familiar_jugador", nullable = false)) })
 	public FamiliarComisionEquipoId getId() {
 		return this.id;
 	}
@@ -59,7 +59,7 @@ public class FamiliarComisionEquipo implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "estatus", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "codigo_comision_equipo", nullable = false, insertable = false, updatable = false)
 	public ComisionEquipo getComisionEquipo() {
 		return this.comisionEquipo;
 	}
@@ -68,13 +68,13 @@ public class FamiliarComisionEquipo implements java.io.Serializable {
 		this.comisionEquipo = comisionEquipo;
 	}
 
-	@Column(name = "estatus_1", nullable = false, length = 1)
-	public char getEstatus1() {
-		return this.estatus1;
+	@Column(name = "estatus", nullable = false, length = 1)
+	public char getEstatus() {
+		return this.estatus;
 	}
 
-	public void setEstatus1(char estatus1) {
-		this.estatus1 = estatus1;
+	public void setEstatus(char estatus) {
+		this.estatus = estatus;
 	}
 
 }

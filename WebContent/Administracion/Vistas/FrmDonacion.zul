@@ -1,9 +1,9 @@
 <?page title="Donaciones" contentType="text/html;charset=UTF-8"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
-<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="donaciones" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winDonaciones" ?>
 <zk>
-	<window id="donaciones" apply="controlador.administracion.CntrlDonacion" title="Donaciones" closable="true" border="normal"
-		width="690px">
+	<window id="winDonaciones" apply="controlador.administracion.CntrlDonacion" title="Donaciones" 
+	closable="true" border="normal" width="690px">
 		<zscript><![CDATA[
 	//@IMPORT
 	import org.zkoss.Version;
@@ -34,36 +34,7 @@
 					</hbox>
 
 				</row>
-				<row>
-					<hbox>
-						<listbox multiple="true" mold="paging" 
-							pageSize="10" width="450px" height="100px" id="lbDatos">
-							<listhead>
-								<listheader style="border:none"
-									label="Cedula o RIF" width="100px" align="center" />
-								<listheader style="border:none"
-									label="Nombre o Razón Social" width="150px" align="center" />
-							</listhead>
-
-							<listitem>
-								<listcell label="18215628" />
-								<listcell label="Miguel Pérez" />
-							</listitem>
-							<listitem>
-								<listcell label="12589632" />
-								<listcell label="Roman Hilvana" />
-							</listitem>
-						</listbox>
-						<vbox height="50px">
-
-							<button id="btnModificar"
-								image="/Recursos/Imagenes/editar.ico" />
-
-						</vbox>
-
-
-					</hbox>
-				</row>
+				
 			</rows>
 		</grid>
 

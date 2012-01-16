@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 28/12/2011 03:24:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated 09/01/2012 10:28:45 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,11 +30,10 @@ public class ModalidadCompetencia implements java.io.Serializable {
 	}
 
 	public ModalidadCompetencia(int codigoModalidadCompetencia,
-			TipoCompetencia tipoCompetencia, String nombre, String descripcion) {
+			TipoCompetencia tipoCompetencia, String nombre) {
 		this.codigoModalidadCompetencia = codigoModalidadCompetencia;
 		this.tipoCompetencia = tipoCompetencia;
 		this.nombre = nombre;
-		this.descripcion = descripcion;
 	}
 
 	public ModalidadCompetencia(int codigoModalidadCompetencia,
@@ -76,7 +75,7 @@ public class ModalidadCompetencia implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	@Column(name = "descripcion", nullable = false)
+	@Column(name = "descripcion")
 	public String getDescripcion() {
 		return this.descripcion;
 	}

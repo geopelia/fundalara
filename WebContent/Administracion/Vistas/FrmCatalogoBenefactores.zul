@@ -1,0 +1,51 @@
+<?page title="Catalogo de Benefactores" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winCatalogoBenefactores" ?>
+<zk>
+<window id="winCatalogoBenefactores" title="Catalogo de Benefactores" apply="controlador.administracion.CntrlCatalogoBenefactores"
+border="normal" width="690px" closable="true">
+<grid>
+	<rows>
+		<row style="border:none;">
+			<hbox>
+				<listbox multiple="true" mold="paging" 
+					pageSize="10" width="450px" height="100px" id="lbxBenefactores">
+					<listhead>
+						<listheader style="border:none"
+							label="Cedula o RIF" width="100px" align="center" sort="auto" />
+						<listheader style="border:none" sort="auto"
+							label="Nombre o Razón Social" width="150px" align="center" />
+						</listhead>
+						<auxhead width="100%">
+							<auxheader colspan="1">
+								<image
+									src="Recursos/Imagenes/filtro.png" width="15px" />
+								<textbox id="txtFiltroCedula" width="70%" />
+							</auxheader>
+							<auxheader colspan="1">
+								<image
+									src="Recursos/Imagenes/filtro.png" width="15px" />
+								<textbox id="txtFiltroNombre" width="70%" />
+							</auxheader>
+						</auxhead>
+						<listitem>
+							<listcell label="18215628" />
+							<listcell label="Miguel Pérez" />
+						</listitem>
+					</listbox>
+				</hbox>
+			</row>
+		</rows>
+</grid>		
+<separator></separator>
+<div align="right">
+	<button image="/Recursos/Imagenes/aceptar.ico"
+		id="btnAceptar" tooltiptext="Seleccionar Benefactor" label="Aceptar"
+		width="100px">
+	</button>
+	<button image="/Recursos/Imagenes/salir.png" id="btnSalir"
+		tooltiptext="Salir del Catálogo" label="Salir" width="100px">
+	</button>
+</div>	
+</window>
+</zk>

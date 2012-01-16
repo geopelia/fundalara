@@ -1,0 +1,600 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="Factura" ?>
+<zk>
+	<window id="Factura" title="Factura" border="normal"
+		apply="controlador.administracion.CntrlPagoCompra"
+		width="690px">
+		<tabbox>
+			<tabs>
+				<tab label="Registrar Factura" style="border:orange"/>
+				<tab label="Pagar Factura" id="tabPagar" style="border:orange"/>
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<panel collapsible="true" title="Datos Básicos"
+						open="true" style="border:orange">
+						<panelchildren>
+
+
+							<grid id="gridDatosFactura" oddRowSclass="none">
+								<columns>
+									<column label="" width="180px">
+									</column>
+									<column label="" width="200px">
+									</column>
+									<column label="" width="180px">
+									</column>
+									<column label="" width="200px">
+									</column>
+								</columns>
+								<rows>
+									<row style="border:none">
+										
+										<label value="Nro. Factura">
+										</label>
+										<hbox>
+										<textbox id="txtNroFactura"
+											width="180px" value="@{cntrlfactura.cuentaPagar.origen}">
+										</textbox>
+
+											<button id="btnBuscarFact"
+												image="/Recursos/Imagenes/consultar.ico"
+												tooltiptext="Validar Factura" />
+												</hbox>
+									</row>
+									<row style="border:none">
+
+										<label value="Rif"></label>
+										<hbox>
+											<textbox id="txtProveedor"
+												
+												value="@{cntrlfactura.persona.cedulaRif}">
+											</textbox>
+
+											<button id="btnBuscar2"
+												image="/Recursos/Imagenes/consultar.ico"
+												tooltiptext="Catalogo Proveedor" />
+											<button
+												id="btnNuevoProveedor"
+												image="/Recursos/Imagenes/proveedor.png"
+												tooltiptext="Nuevo Proveedor" />
+										</hbox>
+
+										<label value="Razón Social"></label>
+										<textbox id="txtRif"
+											width="180px" 
+											value="@{cntrlfactura.persona.personaJuridica.razonSocial}">
+										</textbox>
+
+
+									</row>
+
+									<row style="border:none">
+										<label value="Fecha"></label>
+										<datebox id="dtFactura"
+											width="180px"
+											value="@{cntrlfactura.cuentaPagar.fechaEmision}" format="dd/MM/yyyy">
+										</datebox>
+										<label value="Fecha de Vencimiento"></label>
+										<datebox id="dtFechaVencimiento"
+											width="180px" value="@{cntrlfactura.cuentaPagar.fechaVencimiento}" format="dd/MM/yyyy">
+										</datebox>
+									</row>
+								</rows>
+							</grid>
+
+						</panelchildren>
+					</panel>
+					<!-- DATOS MATERIALES -->
+					<panel collapsible="true" title="Datos Materiales"
+						open="false">
+						<panelchildren>
+
+
+							<div>
+
+								<grid id="gridDatosMateriales" oddRowSclass="none">
+									<columns>
+										<column label=""
+											width="220px">
+										</column>
+										<column label=""
+											width="252px">
+										</column>
+										<column label="" width="90px">
+										</column>
+										<column label="" width="90px">
+										</column>
+										<column label="" width="90px">
+										</column>
+
+									</columns>
+									<rows>
+										<row style="border:none">
+											<label value="Nombre">
+											</label>
+
+											<hbox>
+												<combobox
+													id="cmbCodigoMaterial" width="180px"
+													model="@{cntrlfactura.listaMateriales}" readonly="true" value="--Seleccione--">
+													<comboitem
+														self="@{each='mat'}" label="@{mat.descripcion}"
+														value="@{mat}">
+													</comboitem>
+												</combobox>
+
+												<button
+													id="btnNuevoArticulo"
+													image="/Recursos/Imagenes/basket_add.png" onClick=""
+													label="" tooltiptext="Nuevo Artículo" />
+											</hbox>
+
+											<label value="Precio">
+
+											</label>
+
+											<intbox
+												id="ibPrecioMaterial" width="180px" constraint="no negative,no zero" />
+
+
+
+
+										</row>
+										<row style="border:none">
+
+
+
+
+
+											<label value="Cantidad">
+											</label>
+											
+
+											<spinner id="spMaterial"
+												width="60px" constraint="no negative,no zero"  />
+
+
+										</row>
+
+
+									</rows>
+								</grid>
+
+							</div>
+							<separator></separator>
+							<div align="center">
+								<groupbox width="650px" id="grpboxListaMateriales" style="border:orange">
+									<caption>
+										Lista de Materiales
+									</caption>
+
+									<div align="center">
+										<hbox>
+											<listbox
+												id="lbxListaMateriales"
+												model="@{cntrlfactura.materiales}" width="600px" mold="paging" pageSize="5">
+												<listhead>
+
+
+													<listheader
+														label="Nombre" width="200px">
+													</listheader>
+													<listheader
+														label="Precio" width="100px">
+													</listheader>
+													<listheader
+														label="Cantidad" width="100px">
+													</listheader>
+													<listheader
+														label="Sub-Total" width="100px">
+													</listheader>
+												</listhead>
+												<listitem
+													self="@{each='material'}">
+													<listcell
+														label="@{material.material.descripcion}" />
+													<listcell
+														label="@{material.precioUnitario}" />
+													<listcell
+														label="@{material.cantidad}" />
+													<listcell
+														label="@{material, converter='comun.converter.SubTotalConverter'}" />
+													
+
+												</listitem>
+
+											</listbox>
+											<div align="right">
+												<vbox>
+													<button
+														id="btnAgregar1" image="/Recursos/Imagenes/agregar.ico"
+														onClick="" label="" tooltiptext="Agregar a la Lista" />
+													<button
+														id="btnQuitar1" image="/Recursos/Imagenes/quitar.ico"
+														onClick="" label="" tooltiptext="Quitar de la Lista" />
+													<button
+														id="btnEditar1" image="/Recursos/Imagenes/cancelar.ico"
+														onClick="" label="" tooltiptext="Editar" />
+
+
+												</vbox>
+											</div>
+
+										</hbox>
+										<separator></separator>
+										<div align="right">
+
+											<grid width="300px" oddRowSclass="none">
+												<rows>
+													<row
+														style="border:none">
+														<label
+															value="Sub-Total">
+														</label>
+														<doublebox               
+															id="dboxSubTotalMat" value="@{cntrlfactura.cuentaPagar.subtotal}">
+														</doublebox>
+														
+													</row>
+													<row
+														style="border:none">
+
+														<label
+															value="Valor Iva">
+														</label>
+														<doublebox
+															id="dboxValorIva">
+														</doublebox>
+													</row>
+													<row
+														style="border:none">
+
+														<label
+															value="Monto Iva">
+														</label>
+														<doublebox
+															id="dboxMontoIva" >
+														</doublebox>
+													</row>
+													<row
+														style="border:none">
+
+														<label
+															value="Monto Total">
+														</label>
+														<doublebox
+															id="dboxMontoTotal" value="@{cntrlfactura.cuentaPagar.montoTotal}">
+														</doublebox>
+													</row>
+													
+												</rows>
+											</grid>
+										</div>
+
+									</div>
+								</groupbox>
+							</div>
+							<separator></separator>
+
+						</panelchildren>
+					</panel>
+
+					<div align="right">
+						<button id="btnRegistrar"
+							image="/Recursos/Imagenes/guardar.ico" label="Registrar" />
+						<button id="btnCancelar2" 
+							image="/Recursos/Imagenes/cancelar.ico" label="Cancelar" />
+						<button id="btnSalir2"
+							image="/Recursos/Imagenes/salir.png" onClick=""
+							tooltiptext="Salir" label="Salir" />
+					</div>
+
+
+				</tabpanel>
+				<!-- PAGAR FACTURAS -->
+				<tabpanel id="tabPagarFacturas">
+					<panel collapsible="false" title="Datos Básicos"
+						open="true" style="border:orange">
+						<panelchildren>
+							
+
+								<grid oddRowSclass="none">
+									<columns>
+										<column label="" width="100px"
+											align="left">
+										</column>
+										<column label="" width="180px"
+											align="left">
+										</column>
+										<column label="" width="100px"
+											align="left">
+										</column>
+										<column label="" width="180px"
+											align="left">
+										</column>
+									</columns>
+									<rows>
+										<row style="border:none">
+
+											<label
+												value="Nro Factura">
+											</label>
+											<hbox>
+												<textbox
+													id="txtNroFactura2" disabled="true"
+													value="@{cntrlfactura.cuentaPagarFact.origen}">
+												</textbox>
+												<button id="btnBuscar5"
+													image="/Recursos/Imagenes/consultar.ico">
+												</button>
+											</hbox>
+											<label value="Fecha de Emisión">
+											</label>
+											<datebox id="dtFactura3"
+												format="dd/MM/yyyy"
+												value="@{cntrlfactura.cuentaPagarFact.fechaEmision}">
+											</datebox>
+											
+										</row>
+										<row style="border:none">
+											<label value="Rif"></label>
+											<hbox>
+												<textbox id="txtRif2"
+													disabled="true"
+													value="@{cntrlfactura.cuentaPagarFact.persona.personaJuridica.cedulaRif}">
+												</textbox>
+
+											</hbox>
+											<label
+												value="Razón Social">
+											</label>
+											<hbox>
+												<textbox
+													id="txtCodigoProveedor2" disabled="true"
+													value="@{cntrlfactura.cuentaPagarFact.persona.personaJuridica.razonSocial}">
+												</textbox>
+
+											</hbox>
+
+
+										</row>
+										<row style="border:none">
+											<label value="Monto"></label>
+											<doublebox id="dbMonto"
+												disabled="true"
+												>
+											</doublebox>
+											<label
+												value="Fecha del Pago">
+											</label>
+											<datebox id="dtFactura2"
+												format="dd/MM/yyyy"
+												value="@{cntrlfactura.egreso.fechaPago}">
+											</datebox>
+										</row>
+									</rows>
+								</grid>
+								<separator></separator>
+
+
+							<groupbox width="310" style="border:orange">
+								<caption>Detalle Factura</caption>
+
+
+								<listbox id="lbxListaFacturas"
+									model="@{cntrlfactura.materiales2}" mold="paging" pageSize="5">
+									<listhead>
+
+										<listheader label="Material"
+											width="100px">
+										</listheader>
+										<listheader label="Cantidad"
+											width="100px">
+										</listheader>
+										<listheader
+											label="Precio Unitario" width="100px">
+										</listheader>
+
+									</listhead>
+									<listitem
+										self="@{each='material2'}">
+										<listcell
+											label="@{material2.material.descripcion}" />
+										<listcell
+											label="@{material2.cantidad}" />
+										<listcell
+											label="@{material2.precioUnitario}" />
+										<listcell />
+
+									</listitem>
+
+
+
+								</listbox>
+
+
+							</groupbox>
+							<separator />
+						</panelchildren>
+					</panel>
+					
+	<!-- FORMA DE PAGO -->				
+					<panel collapsible="true" title="Datos del Pago"
+						open="false" style="border:orange">
+						<panelchildren>
+							<div>
+
+							
+									<grid
+										id="gridDiferentesFormasPago" oddRowSclass="none">
+										<columns>
+											<column label=""
+												width="20%">
+											</column>
+											<column label=""
+												width="30%">
+											</column>
+											<column label=""
+												width="20%">
+											</column>
+											<column label=""
+												width="30%">
+											</column>
+										</columns>
+										<rows>
+											<row align="left"
+												style="border:none">
+												<label
+													value="Forma de Pago" />
+												<combobox
+													id="cmbFormaPago" model="@{cntrlfactura.formaPago}"
+													width="180px">
+													<comboitem
+														self="@{each=formaPago}" value="@{formaPago}"
+														label="@{formaPago.nombre}"
+														context="@{formaPago.codigoDatoBasico}">
+													</comboitem>
+												</combobox>
+												<label
+													value="Monto Cancelado" />
+												<doublebox
+													value="@{cntrlfactura.egresoFormaPago.monto}" width="180px"
+													id="dboxMonto" />
+											</row>
+											<row align="left"
+												style="border:none" id="row1" visible="false">
+												<label
+													value="Nro. Documento" />
+												<textbox
+													value="@{cntrlfactura.egresoFormaPago.numeroDocumentoPago}"
+													id="txtNroDocumento" width="180px">
+												</textbox>
+												<label
+													value="Entidad Bancaria" />
+												<combobox
+													model="@{cntrlfactura.banco}" id="cmbEntidadBancaria"
+													value="--Seleccione--" width="180px">
+													<comboitem
+														self="@{each=banco}" value="@{banco}"
+														label="@{banco.nombre}">
+													</comboitem>
+												</combobox>
+											</row>
+											<row align="left"
+												style="border:none" id="row2" visible="false">
+												<label
+													value="Tipo de Tarjeta" />
+												<combobox
+													model="@{cntrlfactura.tipoTarjeta}" id="cmbTipoTarjeta"
+													width="180px" value="--Seleccione--">
+													<comboitem
+														self="@{each=tipoTarjeta}" value="@{tipoTarjeta}"
+														label="@{tipoTarjeta.nombre}">
+													</comboitem>
+
+												</combobox>
+											</row>
+										</rows>
+									</grid>
+							
+							
+							</div>
+
+
+							<separator></separator>
+							<groupbox width="660px" style="border:orange">
+								<caption>
+									Diferentes Métodos de Pago
+								</caption>
+								<div align="center">
+									<hbox>
+										<listbox id="lbxCuentas"
+													model="@{cntrlfactura.listaEgresoFormaPago}" mold="paging" pageSize="5">
+													<listhead>
+														<listheader
+															label="Forma de Pago" width="160px" />
+														<listheader
+															label="Tarjeta" width="120px" />
+														<listheader
+															label="Banco" width="120px" />
+														<listheader
+															label="Nro. de Documento" width="120px" />
+														<listheader
+															label="Monto" width="80px" />
+													</listhead>
+													<listitem
+														self="@{each='egresoFormaPago'}"
+														value="@{egresoFormaPago}">
+														<listcell
+															label="@{egresoFormaPago.datoBasicoByCodigoFormaPago.nombre}" />
+														<listcell
+															label="@{egresoFormaPago.datoBasicoByCodigoTarjeta.nombre}" />
+														<listcell
+															label="@{egresoFormaPago.datoBasicoByCodigoBanco.nombre}" />
+														<listcell
+															label="@{egresoFormaPago.numeroDocuemntoPago}" />
+														<listcell
+															label="@{egresoFormaPago.monto}" />
+													</listitem>
+												</listbox>
+										<div align="right">
+											<vbox>
+												<button id="btnAgregar3"
+													image="/Recursos/Imagenes/agregar.ico" onClick="" label=""
+													tooltiptext="Agregar a la Lista" />
+												<button id="btnQuitar3"
+													image="/Recursos/Imagenes/quitar.ico" onClick="" label=""
+													tooltiptext="Quitar de la Lista" />
+												<button id="btnEditar2"
+													image="/Recursos/Imagenes/cancelar.ico" onClick="" label=""
+													tooltiptext="Editar" />
+											</vbox>
+										</div>
+									</hbox>
+								</div>
+								<div>
+
+									<separator></separator>
+									<div align="right">
+										<grid width="300px" oddRowSclass="none">
+											<rows>
+											<row align="left"
+												style="border:none">
+												<label
+													value="Monto Total">
+												</label>
+												<doublebox width="90px"
+													id="dboxSubTotal" value="@{cntrlfactura.egresoCuentaPagar.montoAbonado}"
+													/>
+
+											</row>
+																					</rows>
+
+										</grid>
+									</div>
+
+								</div>
+							</groupbox>
+							<separator></separator>
+						</panelchildren>
+					</panel>
+					<div align="right">
+						<button id="btnPagar"
+							image="/Recursos/Imagenes/guardar.ico" onClick="" label="Pagar" />
+						<button id="btnAnular"
+							image="/Recursos/Imagenes/eliminar.ico" onClick=""
+							label="Anular" />
+						<button image="/Recursos/Imagenes/cancelar.ico"
+							id="btnCancelar3" label="Cancelar" />
+						<button image="/Recursos/Imagenes/salir.png"
+							id="btnSalir" tooltiptext="Salir" label="Salir">
+
+						</button>
+					</div>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</window>
+</zk>

@@ -3,7 +3,10 @@ package servicio.interfaz;
 import java.util.List;
 
 import modelo.ConceptoNomina;
+import modelo.CuentaPagar;
+import modelo.DatoBasico;
 import modelo.EgresoCuentaPagar ;
+import modelo.TipoDato;
 
 public interface IServicioEgresoCuentaPagar {
 	
@@ -16,6 +19,8 @@ public interface IServicioEgresoCuentaPagar {
 	public abstract  List<EgresoCuentaPagar> listar ();
 	
 	public abstract List<EgresoCuentaPagar> listarActivos();
+	
+	public abstract List<EgresoCuentaPagar> listarPorOrigen(CuentaPagar td);
 	
 	public abstract  EgresoCuentaPagar buscarPorCodigo (EgresoCuentaPagar d);
 

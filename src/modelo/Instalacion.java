@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 20-dic-2011 13:32:22 by Hibernate Tools 3.4.0.CR1
+// Generated 09/01/2012 10:28:45 AM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -8,13 +8,10 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -22,7 +19,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "instalacion", schema = "public")
-@SequenceGenerator(name="instalacion_seq", sequenceName="instalacion_codigo_instalacion_seq")
 public class Instalacion implements java.io.Serializable {
 
 	private int codigoInstalacion;
@@ -31,7 +27,7 @@ public class Instalacion implements java.io.Serializable {
 	private Integer capacidad;
 	private char estatus;
 	private BigDecimal tamano;
-	private Instalacion ubicacion;
+	private String ubicacion;
 	private Set<Almacen> almacens = new HashSet<Almacen>(0);
 	private Set<PlanificacionActividad> planificacionActividads = new HashSet<PlanificacionActividad>(
 			0);
@@ -53,7 +49,7 @@ public class Instalacion implements java.io.Serializable {
 
 	public Instalacion(int codigoInstalacion, DatoBasico datoBasico,
 			String descripcion, Integer capacidad, char estatus,
-			BigDecimal tamano, Instalacion ubicacion, Set<Almacen> almacens,
+			BigDecimal tamano, String ubicacion, Set<Almacen> almacens,
 			Set<PlanificacionActividad> planificacionActividads,
 			Set<PlanRotacion> planRotacions,
 			Set<SesionEjecutada> sesionEjecutadas) {
@@ -71,7 +67,6 @@ public class Instalacion implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(generator="instalacion_seq")
 	@Column(name = "codigo_instalacion", unique = true, nullable = false)
 	public int getCodigoInstalacion() {
 		return this.codigoInstalacion;
@@ -127,13 +122,12 @@ public class Instalacion implements java.io.Serializable {
 		this.tamano = tamano;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ubicacion")
-	public Instalacion getUbicacion() {
+	@Column(name = "ubicacion")
+	public String getUbicacion() {
 		return this.ubicacion;
 	}
 
-	public void setUbicacion(Instalacion ubicacion) {
+	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
 	}
 

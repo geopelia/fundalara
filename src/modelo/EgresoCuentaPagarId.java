@@ -1,6 +1,6 @@
 package modelo;
 
-// Generated 28/12/2011 03:24:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated 09/01/2012 10:28:45 AM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -12,14 +12,14 @@ import javax.persistence.Embeddable;
 public class EgresoCuentaPagarId implements java.io.Serializable {
 
 	private String origen;
-	private String numeroDocumento;
+	private int codigoEgreso;
 
 	public EgresoCuentaPagarId() {
 	}
 
-	public EgresoCuentaPagarId(String origen, String numeroDocumento) {
+	public EgresoCuentaPagarId(String origen, int codigoEgreso) {
 		this.origen = origen;
-		this.numeroDocumento = numeroDocumento;
+		this.codigoEgreso = codigoEgreso;
 	}
 
 	@Column(name = "origen", nullable = false)
@@ -31,13 +31,13 @@ public class EgresoCuentaPagarId implements java.io.Serializable {
 		this.origen = origen;
 	}
 
-	@Column(name = "numero_documento", nullable = false)
-	public String getNumeroDocumento() {
-		return this.numeroDocumento;
+	@Column(name = "codigo_egreso", nullable = false)
+	public int getCodigoEgreso() {
+		return this.codigoEgreso;
 	}
 
-	public void setNumeroDocumento(String numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
+	public void setCodigoEgreso(int codigoEgreso) {
+		this.codigoEgreso = codigoEgreso;
 	}
 
 	public boolean equals(Object other) {
@@ -52,11 +52,7 @@ public class EgresoCuentaPagarId implements java.io.Serializable {
 		return ((this.getOrigen() == castOther.getOrigen()) || (this
 				.getOrigen() != null && castOther.getOrigen() != null && this
 				.getOrigen().equals(castOther.getOrigen())))
-				&& ((this.getNumeroDocumento() == castOther
-						.getNumeroDocumento()) || (this.getNumeroDocumento() != null
-						&& castOther.getNumeroDocumento() != null && this
-						.getNumeroDocumento().equals(
-								castOther.getNumeroDocumento())));
+				&& (this.getCodigoEgreso() == castOther.getCodigoEgreso());
 	}
 
 	public int hashCode() {
@@ -64,10 +60,7 @@ public class EgresoCuentaPagarId implements java.io.Serializable {
 
 		result = 37 * result
 				+ (getOrigen() == null ? 0 : this.getOrigen().hashCode());
-		result = 37
-				* result
-				+ (getNumeroDocumento() == null ? 0 : this.getNumeroDocumento()
-						.hashCode());
+		result = 37 * result + this.getCodigoEgreso();
 		return result;
 	}
 
